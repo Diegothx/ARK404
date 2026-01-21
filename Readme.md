@@ -25,14 +25,22 @@ ark/
 │   ├─ alembic.ini
 │   └─ Dockerfile
 ├─ frontend/          # React frontend
+│   ├─ public/
+│   │   └─ Favicon.png
 │   ├─ src/
-│   │   ├─ App.js
-│   │   └─ index.js
+│   │   ├─ App.tsx
+│   │   └─ index.tsx 
+│   ├─ Dockerfile
+│   ├─ Dockerfile.dev
+│   ├─ index.html
+│   ├─ package-lock.json
 │   ├─ package.json
-│   └─ Dockerfile
-├─ docker-compose.dev.yml
-├─ docker-compose.prod.yml
+│   └─ tsconfig.json
 ├─ .env               # Environment variables
+├─ .gitignore
+├─ docker-compose.dev.yml
+├─ docker-compose.prod.yml 
+├─ Makefile
 └─ README.md
 ``` 
 ## Getting Started
@@ -54,29 +62,18 @@ BACKEND_PORT=5000
 FRONTEND_PORT=3000
 ```
 
-2. Development Mode (With Hot Reload)
- 
-Backend and frontend mount local files for live updates (uvicorn --reload for backend, npm start for frontend) during development. Also, the database persists via a Docker volume.
-
-### Development Commands
+2. Development Mode (With Hot Reload) 
 
 Start dev environment:
-make dev
+`make dev`
 
 Create migration:
-make makemigration m="add guestbook"
+`make makemigration m="add guestbook"`
 
 Apply migrations:
-make migrate
+`make migrate`
 
 Stop containers:
-make dev-down
+`make dev-down`
 
-
-Access the app:
-
-Frontend: http://localhost:3000 
-
-Backend: http://localhost:5000 
-
-Database test: http://localhost:5000/db-test
+3. Production Mode
