@@ -30,6 +30,21 @@ makemigration:
 	docker compose -f $(DEV_COMPOSE) exec backend \
 		alembic revision --autogenerate -m "$(m)"
 
+## Generate frontend API client from backend OpenAPI spec
+generate-frontend-api:
+	@echo "Downloading OpenAPI JSON from backend..."
+	curl -s http://localhost:5000/openapi.json -o frontend/openapi.json
+	@echo "Generating TypeScript API client..."
+	npx openapi-typescript-codegen --input frontend/openapi.json --output frontend/src/api --client axios
+	@echo "Cleaning up temporary OpenAPI JSON..."
+	rm -f frontend/openapi.json
+	@echo "✅ Frontend API client generated."
+
+clean-frontend-api:
+	rm -rf frontend/src/api
+	@echo "✅ Frontend API client cleaned."
+
 ## Tail logs
 logs:
 	docker compose -f $(DEV_COMPOSE) logs -f
+

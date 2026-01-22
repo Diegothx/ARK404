@@ -1,24 +1,27 @@
-from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Request
+from app.api.v1 import guestbook, health
 import os
-import psycopg2
 
 app = FastAPI(title="Ark Backend")
 
-DB_URL = os.getenv("DATABASE_URL", f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}")
+app.include_router(health.router)
+app.include_router(guestbook.router)
 
-@app.get("/")
-async def root():
-    return {"message": "Ark backend is running!"}
 
-@app.get("/db-test")
-async def db_test():
-    try:
-        conn = psycopg2.connect(DB_URL)
-        cur = conn.cursor()
-        cur.execute("SELECT 1;")
-        result = cur.fetchone()
-        cur.close()
-        conn.close()
-        return {"db_connection": result}
-    except Exception as e:
-        return {"db_connection": "Failed", "error": str(e)}
+# Detect if running in dev
+ENV = os.getenv("ENV", "development")
+
+if ENV == "production":
+    # Explicit production origin(s)
+    allow_origins = [os.getenv("FRONTEND_URLS", "").split(",")[0]]
+else:
+    # Dev: allow all origins inside Docker + host browser
+    allow_origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allow_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+) 
