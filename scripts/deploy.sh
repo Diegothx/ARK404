@@ -3,7 +3,7 @@ set -e
 
 echo "🚀 Iniciando deploy..."
 
-cd /ruta/a/tu-proyecto
+cd ./ARK404
 
 # Cargar variables
 source .env.production
