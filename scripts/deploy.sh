@@ -11,7 +11,7 @@ source .env.production
 # Backup antes de actualizar
 echo "💾 Creando backup de la base de datos..."
 docker exec ${APP_NAME}_db pg_dump -U ${DB_USER} ${DB_NAME} > \
-    backups/backup_$(date +%Y%m%d_%H%M%S).sql 2>/dev/null || true
+    bddBackups/backup_$(date +%Y%m%d_%H%M%S).sql 2>/dev/null || true
 
 # Pull y build
 git pull origin main
