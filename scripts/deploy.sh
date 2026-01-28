@@ -5,56 +5,44 @@ echo "🚀 Iniciando deploy..."
 
 cd ~/ARK404
 
-# Verificar que el archivo .env existe
+# Verificar .env
 if [ ! -f .env ]; then
-    echo "❌ ERROR: No se encuentra .env"
-    echo "   Copia .env.example a .env y configura las variables"
-    exit 1
+  echo "❌ ERROR: Falta el archivo .env"
+  exit 1
 fi
 
-# Cargar variables
 source .env
 
-# Variables importantes para docker compose
-export COMPOSE_DOCKER_CLI_BUILD=0
-export DOCKER_BUILDKIT=0
+COMPOSE_FILE=docker-compose.prod.yml
 
-# Backup antes de actualizar
-echo "💾 Creando backup de la base de datos..."
-mkdir -p bddBackups  # Asegurar que existe el directorio
-docker exec ${APP_NAME}_db pg_dump -U ${DB_USER} ${DB_NAME} > \
-    bddBackups/backup_$(date +%Y%m%d_%H%M%S).sql 2>/dev/null || true
+# Backup DB
+echo "💾 Backup de la base de datos..."
+mkdir -p backups
+docker compose -f $COMPOSE_FILE exec -T db \
+  pg_dump -U "$DB_USER" "$DB_NAME" \
+  > backups/backup_$(date +%Y%m%d_%H%M%S).sql || true
 
-# Pull y build
+# Actualizar código
 git pull origin main
-docker compose -f docker-compose.prod.yml build --pull --no-cache
 
-# Down manteniendo volúmenes (importante para DB)
-docker compose -f docker-compose.prod.yml down
+# Apagar servicios
+docker compose -f $COMPOSE_FILE down
 
-# Up con migraciones
+# Build limpio
+docker compose -f $COMPOSE_FILE build --no-cache
+
+# Levantar DB primero (healthcheck hace el wait)
+docker compose -f $COMPOSE_FILE up -d db
+
+# Migraciones
 echo "🔄 Ejecutando migraciones..."
-docker compose -f docker-compose.prod.yml up -d db
-sleep 5
+docker compose -f $COMPOSE_FILE run --rm backend alembic upgrade head
 
-# Ejecutar migraciones manualmente (alternativa al servicio)
-docker compose -f docker-compose.prod.yml run --rm backend \
-    sh -c "alembic upgrade head"
-
-# Levantar el resto
-docker compose -f docker-compose.prod.yml up -d backend frontend
-
-# Limpieza
-echo "🧹 Limpiando imágenes sin usar..."
-docker image prune -f
+# Levantar todo
+docker compose -f $COMPOSE_FILE up -d
 
 # Verificación
-echo "✅ Verificando servicios..."
-sleep 10
-docker compose -f docker-compose.prod.yml ps
-
-# Verificar migraciones
-echo "📊 Estado de migraciones:"
-docker compose -f docker-compose.prod.yml exec backend alembic current
+echo "✅ Servicios activos:"
+docker compose -f $COMPOSE_FILE ps
 
 echo "🎉 Deploy completado!"
