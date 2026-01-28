@@ -16,8 +16,8 @@ fi
 source .env
 
 # Variables importantes para docker compose
-export COMPOSE_DOCKER_CLI_BUILD=1
-export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=0
+export DOCKER_BUILDKIT=0
 
 # Backup antes de actualizar
 echo "💾 Creando backup de la base de datos..."
