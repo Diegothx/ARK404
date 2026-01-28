@@ -1,8 +1,6 @@
 services:
   db:
     image: postgres:15-alpine  # Más ligero
-    env_file:
-      - .env.production
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -19,9 +17,7 @@ services:
     networks:
       - app_network
 
-  backend:
-    env_file:
-      - .env.production
+  backend: 
     build:
       context: ./backend
       dockerfile: Dockerfile.prod  # Optimizado para producción
@@ -39,9 +35,7 @@ services:
     networks:
       - app_network
 
-  frontend: 
-    env_file:
-      - .env.production
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
