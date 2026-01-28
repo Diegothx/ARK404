@@ -30,19 +30,11 @@ target_metadata = Base.metadata
 # ------------------------------------------------------------------
 
 def get_database_url() -> str:
-    user = os.getenv("DB_USER")
-    password = os.getenv("DB_PASSWORD")
-    host = os.getenv("DB_HOST")
-    port = os.getenv("DB_PORT")
-    name = os.getenv("DB_NAME")
 
-    if not all([user, password, host, name]):
-        raise RuntimeError("Database environment variables are not fully set")
-
-    if port:
-        return f"postgresql://{user}:{password}@{host}:{port}/{name}"
-    else:
-        return f"postgresql://{user}:{password}@{host}/{name}"
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    if not DATABASE_URL:
+        raise ValueError("DATABASE_URL environment variable is not set")
+    return DATABASE_URL
 
 
 config.set_main_option("sqlalchemy.url", get_database_url())

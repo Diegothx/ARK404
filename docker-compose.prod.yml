@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_DB: ${DB_NAME} 
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -18,13 +18,13 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.prod  # Optimizado para producción
-    env_file:
-      - .env
     environment:
-      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}
+      FRONTEND_URLS: http://localhost:${FRONTEND_PORT}
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}
       # Variables de FastAPI
       PYTHONUNBUFFERED: "1"
       PYTHONDONTWRITEBYTECODE: "1"
+      ENV: production
     depends_on:
       db:
         condition: service_healthy
@@ -34,8 +34,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
-    env_file:
-      - .env
     environment:
       NODE_ENV: production
       # Variable para API calls
