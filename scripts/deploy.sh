@@ -15,14 +15,19 @@ fi
 # Cargar variables
 source .env
 
+# Variables importantes para docker compose
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+
 # Backup antes de actualizar
 echo "💾 Creando backup de la base de datos..."
+mkdir -p bddBackups  # Asegurar que existe el directorio
 docker exec ${APP_NAME}_db pg_dump -U ${DB_USER} ${DB_NAME} > \
     bddBackups/backup_$(date +%Y%m%d_%H%M%S).sql 2>/dev/null || true
 
 # Pull y build
 git pull origin main
-docker compose -f docker-compose.prod.yml build
+docker compose -f docker-compose.prod.yml build --pull --no-cache
 
 # Down manteniendo volúmenes (importante para DB)
 docker compose -f docker-compose.prod.yml down
