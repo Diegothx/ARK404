@@ -5,6 +5,13 @@ echo "🚀 Iniciando deploy..."
 
 cd ~/ARK404
 
+# Verificar que el archivo .env.production existe
+if [ ! -f .env.production ]; then
+    echo "❌ ERROR: No se encuentra .env.production"
+    echo "   Copia .env.example a .env.production y configura las variables"
+    exit 1
+fi
+
 # Cargar variables
 source .env.production
 
