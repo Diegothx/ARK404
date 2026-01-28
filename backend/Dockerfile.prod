@@ -1,0 +1,40 @@
+FROM python:3.11-slim as builder
+
+WORKDIR /app
+
+# Instalar dependencias del sistema para psycopg2
+RUN apt-get update && apt-get install -y \
+    gcc \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# Etapa final
+FROM python:3.11-slim
+WORKDIR /app
+
+# Instalar postgresql-client para pg_isready
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar dependencias instaladas
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
+ENV PYTHONPATH=/app
+
+# Copiar aplicación
+COPY . .
+
+# Crear usuario no-root
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app
+USER appuser
+
+# Salud de la aplicación
+HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1

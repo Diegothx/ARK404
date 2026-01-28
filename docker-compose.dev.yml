@@ -33,7 +33,6 @@ services:
       - .env
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
     ports:
       - "${FRONTEND_PORT}:3000"
     volumes:
