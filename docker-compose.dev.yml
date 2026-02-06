@@ -24,9 +24,17 @@ services:
       FRONTEND_URLS: http://localhost:${FRONTEND_PORT}
       ENV: development
       DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_ALGORITHM: ${JWT_ALGORITHM}
+      JWT_ACCESS_TOKEN_EXPIRE_MINUTES: ${JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+
+
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_healthy 
 
   frontend: 
     build:
@@ -40,6 +48,7 @@ services:
     - ./frontend:/app:cached       # Mount source for hot reload
 
     command: npm run dev -- --host 0.0.0.0
+    
 volumes:
   frontend_node_modules:
   db_data:

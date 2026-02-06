@@ -1,8 +1,11 @@
 fastapi
 uvicorn[standard]
+python-jose[cryptography]
+passlib[bcrypt]
 sqlalchemy
 psycopg2-binary  # PostgreSQL driver
 python-dotenv    # To read .env locally
 alembic
 pydantic
 email-validator
+python-multipart==0.0.6 

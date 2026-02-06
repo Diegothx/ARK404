@@ -5,28 +5,17 @@
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
-export class HealthService {
+export class QuotesService {
     /**
-     * Root
+     * Get Quote
+     * Retrieve a random quote from the database.
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static rootGet(): CancelablePromise<any> {
+    public static getQuoteGetQuoteGet(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/',
-        });
-    }
-    /**
-     * Db Test
-     * Test database connection by running a simple query.
-     * @returns any Successful Response
-     * @throws ApiError
-     */
-    public static dbTestDbTestGet(): CancelablePromise<any> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/db-test',
+            url: '/get-quote',
         });
     }
 }

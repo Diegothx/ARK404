@@ -21,10 +21,14 @@ dev-up:
 dev-down:
 	docker compose -f $(DEV_COMPOSE) down
 
+## Stamp migrations to current state (useful for initial setup)
+stamp:
+	docker compose -f $(DEV_COMPOSE) exec backend alembic stamp head
+	
 ## Apply migrations
 migrate:
 	docker compose -f $(DEV_COMPOSE) exec backend alembic upgrade head 
-
+ 
 ## Create new migration
 makemigration:
 ifndef m

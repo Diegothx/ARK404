@@ -1,3 +1,5 @@
+# app/utils/security.py
+import bcrypt
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
@@ -32,3 +34,15 @@ def verify_access_token(token: str):
         return payload  # contains e.g. {"sub": "admin"}
     except JWTError:
         return None
+
+def hash_password(password: str) -> str:
+    # bcrypt expects bytes
+    password_bytes = password.encode('utf-8')
+    hashed = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
+    return hashed.decode('utf-8')  # store as string in DB
+
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    plain_password_bytes = plain_password.encode('utf-8')
+    hashed_password_bytes = hashed_password.encode('utf-8')
+    return bcrypt.checkpw(plain_password_bytes, hashed_password_bytes) 

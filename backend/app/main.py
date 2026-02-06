@@ -2,6 +2,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from app.api.v1.public import   health, quotes  # Import quotes router
 from app.api.v1.admin import login, quotes as adminQuotes  # Ensure admin login routes are included
+from app.initial_data import create_admin
+
 import os
 
 app = FastAPI(title="Ark Backend")
@@ -13,17 +15,23 @@ app.include_router(adminQuotes.router)
 
 # Detect if running in dev
 ENV = os.getenv("ENV", "development")
-
 if ENV == "production":
-    # Explicit production origin(s)
-    allow_origins = [os.getenv("FRONTEND_URLS", "").split(",")[0]]
+    frontend_urls = os.getenv("FRONTEND_URLS", "")
+    if not frontend_urls:
+        raise ValueError("FRONTEND_URLS must be set in production!")
+    allow_origins = [url.strip() for url in frontend_urls.split(",") if url.strip()]
 else:
-    # Dev: allow all origins inside Docker + host browser
-    allow_origins = ["*"]
+    allow_origins = ["*"]  # Dev: allow all
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-) 
+)
+
+
+@app.on_event("startup")
+def startup_event():
+    create_admin()

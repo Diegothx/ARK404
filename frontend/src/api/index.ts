@@ -7,10 +7,9 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { GuestbookCreate } from './models/GuestbookCreate';
-export type { GuestbookOut } from './models/GuestbookOut';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { ValidationError } from './models/ValidationError';
 
-export { GuestbookService } from './services/GuestbookService';
+export { AdminService } from './services/AdminService';
 export { HealthService } from './services/HealthService';
+export { QuotesService } from './services/QuotesService';
