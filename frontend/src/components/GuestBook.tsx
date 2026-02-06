@@ -30,8 +30,6 @@ const Guestbook = ({
   const handleSubmit = async  (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
-    console.log('Submitting:', { name, email, message });
-
 
     if (name.trim() === '') {
       setError('Name is required.');
@@ -44,15 +42,13 @@ const Guestbook = ({
     if (email.trim() !== '' && !validateEmail(email.trim())) {
       setError('Please enter a valid email or leave it blank.');
       return;
-    }
-    console.log({ name, email, message });
+    } 
 
     const newEntry = await GuestbookService.createEntryGuestbookPost({
       name: name.trim(),
       email: email.trim() === '' ? undefined : email.trim(),
       message: message.trim(),
-    })
-    console.log('New entry added:', newEntry);
+    }) 
     setEntries([newEntry, ...entries]);
     setName('');
     setEmail('');

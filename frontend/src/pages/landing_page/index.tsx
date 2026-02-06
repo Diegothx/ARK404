@@ -1,65 +1,25 @@
 import { useState, JSX, useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs, ServerHealthStatus} from "../../TabContainer"; 
 import { QuotesService } from "../../api"; 
+import { Rain } from "../../components/Rain"; // Adjust path as needed
+
 import Guestbook from "../../components/GuestBook";
 export function LandingPage({
   serverHealth,
-  setCurrentTab,
-  isAdminMode,
+  setCurrentTab, 
+  showIcons,
+  setShowIcons
 }: {
   serverHealth: ServerHealthStatus;
-  setCurrentTab: Dispatch<SetStateAction<Tabs>>;
-  isAdminMode?: boolean;
+  setCurrentTab: Dispatch<SetStateAction<Tabs>>; 
+  showIcons: boolean;
+  setShowIcons: Dispatch<SetStateAction<boolean>>;
 }) {
   const [rainDrops, setRainDrops] = useState<{
     front: JSX.Element[];
     back: JSX.Element[];
-  }>({ front: [], back: [] });
-  const [showIcons, setShowIcons] = useState(false);
-  const [quote, setQuote] = useState("");
-  const makeItRain = () => {
-    const increment = 0;
-    const drops: JSX.Element[] = [];
-    const backDrops: JSX.Element[] = [];
-
-    let currentIncrement = increment;
-
-    for (let i = 0; i < 100; i++) {
-      const randoHundo = Math.floor(Math.random() * (98 - 1 + 1) + 1);
-      const randoFiver = Math.floor(Math.random() * (5 - 2 + 1) + 2);
-      currentIncrement += randoFiver;
-
-      const dropStyle = {
-        left: `${currentIncrement}%`,
-        bottom: `${randoFiver + randoFiver - 1 + 100}%`,
-        animationDelay: `0.${randoHundo}s`,
-        animationDuration: `0.5${randoHundo}s`,
-      };
-
-      const dropBackStyle = {
-        right: `${currentIncrement}%`,
-        bottom: `${randoFiver + randoFiver - 1 + 100}%`,
-        animationDelay: `0.${randoHundo}s`,
-        animationDuration: `0.5${randoHundo}s`,
-      };
-
-      drops.push(
-        <div className="drop" style={dropStyle} key={`drop-${i}`}>
-          <div className="stem" style={dropStyle}></div>
-        </div>,
-      );
-
-      backDrops.push(
-        <div className="drop" style={dropBackStyle} key={`back-drop-${i}`}>
-          <div className="stem" style={dropBackStyle}></div>
-        </div>,
-      );
-    }
-
-    // Update state to trigger re-render
-    setRainDrops({ front: drops, back: backDrops });
-  }; 
- 
+  }>({ front: [], back: [] }); 
+  const [quote, setQuote] = useState(""); 
   const handleKeyDown =  (ev: KeyboardEvent) => {
     if (ev.code === "Enter") {
       setShowIcons(true)
@@ -67,8 +27,7 @@ export function LandingPage({
   };
  
  
-  useEffect(() => {
-    makeItRain();
+  useEffect(() => { 
     QuotesService.getQuoteGetQuoteGet()
       .then(response => {
         if (response.quote) {
@@ -106,17 +65,7 @@ export function LandingPage({
           opacity: "0.3",
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          left: "0",
-          width: "100vw",
-          height: "100vh",
-          zIndex: "1",
-        }}
-      >
-        {rainDrops.front.map((drop) => drop)}
-      </div>
+      <Rain/>
       <div
         style={{
           position: "absolute",
@@ -129,6 +78,7 @@ export function LandingPage({
       >
         {rainDrops.back.map((drop) => drop)}
       </div>
+      
       <div
         style={{
           position: "relative",
@@ -171,7 +121,7 @@ export function LandingPage({
           }}
         >
          {showIcons && (
-           <Guestbook isAdminMode={isAdminMode} />
+           <Guestbook  />
          )}
           <a href="mailto:alguien.jpg1@gmail.com">
             <svg
@@ -225,7 +175,7 @@ export function LandingPage({
                   gridTemplateColumns: "1fr 1fr 1fr",
                 }}
               >
-                {/* <svg
+                 <svg
                   style={{ cursor: "pointer" }}
                   onClick={() => setCurrentTab(Tabs.DRAWING)}
                   width="80px"
@@ -239,6 +189,7 @@ export function LandingPage({
                     fill="#ff00cfa0"
                   />
                 </svg>
+                {/* 
                 <svg
                   style={{ cursor: "pointer" }}
                   onClick={() => setCurrentTab(Tabs.VIDEOGAME)}

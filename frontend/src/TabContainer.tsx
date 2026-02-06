@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { LandingPage } from "./pages/landing_page";
+import {DrawingPage} from "./pages/drawing_page";
 import { HealthService } from "./api";
 export enum Tabs {
   LANDING = "landing",
+  DRAWING = "drawing",
   //BLOG = "blog",
   //COOKING = "cooking",
   //GARDERING = "gardering",
@@ -24,8 +26,8 @@ export enum ServerHealthStatus {
 export function TabContainer() {
   const [serverHealth, setServerHealth] = useState<ServerHealthStatus>(ServerHealthStatus.UNKNOWN);
   const [currentTab, setCurrentTab] = useState(Tabs.LANDING);
-  const [isAdminMode, ] = useState(false);
-
+  const [showIcons, setShowIcons] = useState(false);
+ 
   useEffect(() => {
     HealthService.rootGet()
       .then((response) => {
@@ -47,8 +49,13 @@ export function TabContainer() {
       }}
     >
       {currentTab == Tabs.LANDING && (
-        <LandingPage setCurrentTab={setCurrentTab} serverHealth={serverHealth} isAdminMode={isAdminMode} />
+        <LandingPage setCurrentTab={setCurrentTab} serverHealth={serverHealth} showIcons={showIcons} setShowIcons={setShowIcons}/>
       )}
+      {currentTab == Tabs.DRAWING && 
+      <DrawingPage setCurrentTab={setCurrentTab} 
+      />}
+     {/*  {currentTab == Tabs.BLOG && <BlogPage setCurrentTab={setCurrentTab} />} */}
+      {/* {currentTab == Tabs.COOKING && <CookingPage setCurrentTab={setCurrentTab} />} */}
     </div>
   );
 }

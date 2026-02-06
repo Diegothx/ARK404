@@ -3,13 +3,10 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.db.models.guestbook import GuestbookEntry 
 from app.dependencies.admin_required import admin_required
+ 
+router = APIRouter(tags=["Admin"])
 
-router = APIRouter(
-    prefix="/guestbook",
-    tags=["Guestbook"],
-)
-
-@router.delete("/{entry_id}", response_model=dict)
+@router.delete("/guestbook/{entry_id}", response_model=dict)
 def delete_entry(
     entry_id: int,
     db: Session = Depends(get_db),
