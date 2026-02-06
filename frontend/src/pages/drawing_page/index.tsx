@@ -1,4 +1,5 @@
-import { Rain } from "../../components/Rain"; 
+import { Dispatch, SetStateAction } from "react";
+import { Rain } from "../../components/Rain";
 import { Tabs } from "../../TabContainer";
 import { ImageWithTooltip } from "../../components/ImageWithTooltip";
 
