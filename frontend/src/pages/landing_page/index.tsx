@@ -1,6 +1,7 @@
 import { useState, JSX, useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs, ServerHealthStatus} from "../../TabContainer"; 
 import { QuotesService } from "../../api"; 
+import Guestbook from "../../components/GuestBook";
 export function LandingPage({
   serverHealth,
   setCurrentTab,
@@ -133,6 +134,7 @@ export function LandingPage({
           position: "relative",
           width: "80%", 
           borderRadius: "20px",
+          height: "90vh",
           border: "5px double purple",
           margin: "auto",
           zIndex: "1",
@@ -168,9 +170,9 @@ export function LandingPage({
             gap: "10px",
           }}
         >
-         {/*showIcons && (
+         {showIcons && (
            <Guestbook isAdminMode={isAdminMode} />
-         )*/}
+         )}
           <a href="mailto:alguien.jpg1@gmail.com">
             <svg
               fill="purple"

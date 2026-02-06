@@ -1,6 +1,6 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from app.api.v1.public import   health, quotes  # Import quotes router
+from app.api.v1.public import   health, quotes, guestbook  # Import quotes router
 from app.api.v1.admin import login, quotes as adminQuotes, guestbook as adminGuestbook  # Ensure admin login routes are included
 from app.initial_data import create_admin
 
@@ -10,7 +10,8 @@ app = FastAPI(title="Ark Backend")
 
 app.include_router(health.router)
 app.include_router(quotes.router)
-app.include_router(login.router)
+app.include_router(guestbook.router)
+app.include_router(login.router) 
 app.include_router(adminQuotes.router)
 app.include_router(adminGuestbook.router)
 # Detect if running in dev

@@ -24,16 +24,14 @@ export enum ServerHealthStatus {
 export function TabContainer() {
   const [serverHealth, setServerHealth] = useState<ServerHealthStatus>(ServerHealthStatus.UNKNOWN);
   const [currentTab, setCurrentTab] = useState(Tabs.LANDING);
-  const [isAdminMode, ] = useState(true);
+  const [isAdminMode, ] = useState(false);
 
   useEffect(() => {
     HealthService.rootGet()
       .then((response) => {
-        console.log("Health check response:", response);
         setServerHealth(ServerHealthStatus.HEALTHY);
       })
       .catch((error) => {
-        console.error("Health check failed:", error);
         setServerHealth(ServerHealthStatus.BACKEND_DOWN);
       });
   }, []);

@@ -13,7 +13,7 @@ router = APIRouter(
 def delete_entry(
     entry_id: int,
     db: Session = Depends(get_db),
-    admin: dict = Depends(admin_required)
+    admin = Depends(admin_required)
 ):
     entry = db.get(GuestbookEntry, entry_id)
     if not entry:

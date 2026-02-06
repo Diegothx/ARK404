@@ -8,7 +8,6 @@ import { request as __request } from '../core/request';
 export class QuotesService {
     /**
      * Get Quote
-     * Retrieve a random quote from the database.
      * @returns any Successful Response
      * @throws ApiError
      */
