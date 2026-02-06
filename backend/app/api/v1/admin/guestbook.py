@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy import select
+from fastapi import APIRouter, Depends 
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.db.models.guestbook import GuestbookEntry 
-from app.dependencies import get_current_admin
+from app.dependencies.admin_required import admin_required
 
 router = APIRouter(
     prefix="/guestbook",
@@ -14,7 +13,7 @@ router = APIRouter(
 def delete_entry(
     entry_id: int,
     db: Session = Depends(get_db),
-    admin: dict = Depends(get_current_admin)
+    admin: dict = Depends(admin_required)
 ):
     entry = db.get(GuestbookEntry, entry_id)
     if not entry:

@@ -1,20 +1,19 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import text  # Add this import
+from sqlalchemy import text
 from app.db.session import get_db
 
 router = APIRouter(tags=["Quotes"])
- 
+
 @router.get("/get-quote")
 def get_quote(db: Session = Depends(get_db)):
-    """
-    Retrieve a random quote from the database.
-    """
     try:
-        result = db.execute(text("SELECT quote FROM quotes ORDER BY RANDOM() LIMIT 1;")).fetchone()
+        result = db.execute(
+            text("SELECT content FROM quotes ORDER BY RANDOM() LIMIT 1")
+        ).fetchone()
+
         if result:
-            return {"quote": result[0]}
-        else:
-            return {"quote": None, "message": "No quotes found in the database."}
+            return {"quote": result.content}
+        return {"quote": None, "message": "No quotes found"}
     except Exception as e:
-        return {"error": str(e)} 
+        raise HTTPException(status_code=500, detail=str(e))

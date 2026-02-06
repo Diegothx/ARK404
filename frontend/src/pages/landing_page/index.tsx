@@ -1,29 +1,6 @@
 import { useState, JSX, useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs, ServerHealthStatus} from "../../TabContainer"; 
-import { QuotesService } from "../../api";
-const randomQuotes = [
-  "Loading Assets...",
-  "Just Vibing...",
-  "Rendering the testing...",
-  "Feeding the cat...",
-  "Starting Process..",
-  "Launching ******",
-  "Quiting the Bed...",
-  "I Can See You...",
-  "Cooling down the Mouse...",
-  "Defeating the Elite 4...",
-  "Recovering the Patagonia...",
-  "Chile best country of Chile...",
-  "Watering the plants...",
-  "Just maybe...",
-  "The cake is a lie...",
-  "Do a barrel roll...",
-  "Reintroducing the intestines...",
-  "LEROY JENKINS!...",
-  "Just reaching the ARk...",
-  "It's cold...",
-  "..."
-];
+import { QuotesService } from "../../api"; 
 export function LandingPage({
   serverHealth,
   setCurrentTab,
@@ -96,11 +73,11 @@ export function LandingPage({
         if (response.quote) {
           setQuote(response.quote);
         } else {
-          setQuote(randomQuotes[Math.floor(Math.random() * randomQuotes.length)]);
+          setQuote("The world is quiet here");
         }
       })
       .catch(() => {
-        setQuote(randomQuotes[Math.floor(Math.random() * randomQuotes.length)]);
+        setQuote("The world is quiet here");
       });
 
     window.addEventListener('keydown', handleKeyDown);
@@ -180,7 +157,7 @@ export function LandingPage({
         >
           <h2>ROBCO INDUSTRIES (TM) UNIFIED OPERATING SYSTEM</h2>
           <h2>The world you grew up to join no longer exists</h2>
-          <h2> <span style={{color: serverHealth === ServerHealthStatus.HEALTHY ? "limegreen" : "red",}}>•</span> {quote} </h2>
+          <h2> <span style={{color: serverHealth === ServerHealthStatus.HEALTHY ? "limegreen" : "red",}}>•</span> {quote}...</h2>
         </div>  
         <div
           style={{
