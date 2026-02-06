@@ -52,11 +52,11 @@ export function LandingPage({
   return (
     <>
       {" "}
-      <div  
+      <div
         style={{
-          position: "absolute",
-          width: "100vw",
-          height: "100vh",
+          position: "absolute", 
+          width: "100%",
+          height: "100%",
           top: "0",
           backgroundImage: 'url("test.jpg")',
           backgroundSize: "cover",
@@ -65,26 +65,14 @@ export function LandingPage({
           opacity: "0.3",
         }}
       />
-      <Rain/>
-      <div
-        style={{
-          position: "absolute",
-          left: "0",
-          width: "100vw",
-          height: "100vh",
-          bottom: "60px",
-          opacity: "0.5",
-        }}
-      >
-        {rainDrops.back.map((drop) => drop)}
-      </div>
+      <Rain/> 
       
       <div
         style={{
           position: "relative",
-          width: "80%", 
+          width: "1500px",
           borderRadius: "20px",
-          height: "90vh",
+          height: "90%",  
           border: "5px double purple",
           margin: "auto",
           zIndex: "1",
@@ -93,7 +81,7 @@ export function LandingPage({
           textAlign: "center",
           backgroundColor: "rgba(53, 6, 59, 0.3)",
           display:'flex',
-          flexDirection:'column'
+          flexDirection:'column', 
         }}
       >
         <div
@@ -105,6 +93,7 @@ export function LandingPage({
             paddingRight: "15px",
             paddingLeft: "20px",
             textAlign: "left",
+            height:'250px',
           }}
         >
           <h2>ROBCO INDUSTRIES (TM) UNIFIED OPERATING SYSTEM</h2>
@@ -113,16 +102,20 @@ export function LandingPage({
         </div>  
         <div
           style={{
+            maxWidth:'45%',
+            overflow: "hidden" ,
             position: "absolute",
             right: "10px",
-            top: "10px",
+            top: "10px", 
+        }}> 
+        <div
+          style={{  
             display: "flex",
             gap: "10px",
+            
+            justifyContent: "flex-end",
           }}
-        >
-         {showIcons && (
-           <Guestbook  />
-         )}
+        >  
           <a href="mailto:alguien.jpg1@gmail.com">
             <svg
               fill="purple"
@@ -163,7 +156,13 @@ export function LandingPage({
               fill="purple"
             />
           </svg>
+          </div>
+         {showIcons && (
+           <Guestbook  />
+         )}
         </div>
+
+        
         {showIcons ? (
             <div className={`fade-in scale-in`} key="icons">
               <div
@@ -262,11 +261,12 @@ export function LandingPage({
               <h1
               className="anim-typewriter"
                 style={{ 
+                  height:'100%', 
+                  marginTop:'-150px',
                   marginLeft: 'auto',
                   marginRight: 'auto',
                   overflow:'hidden',
                   fontSize: "150px",
-                  height: "200px",
                   fontFamily: "Alvera Bold Square",
                   cursor: "pointer",
                   flexGrow:1, 
@@ -276,11 +276,7 @@ export function LandingPage({
               >
                 <span className="blinking-underscore" style={{width:'69px'}}>{" "}</span>ENTER<span className="blinking-underscore" style={{width:'69px'}}>_</span>
               </h1> 
-          )} 
-        <div style={{
-            minHeight:'180px'}}>
-
-        </div>
+          )}  
         <h1
           style={{
             position: "absolute",

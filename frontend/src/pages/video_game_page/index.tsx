@@ -29,28 +29,12 @@ const statusOrder = {
 };
 
 export function VideoGamePage({
-  setCurrentTab,
-  isAdminMode
+  setCurrentTab
 }: {
-  setCurrentTab: Dispatch<SetStateAction<Tabs>>;
-  isAdminMode?: boolean;
-}) {
-  const [rainDrops, setRainDrops] = useState<{
-    front: JSX.Element[];
-    back: JSX.Element[];
-  }>({ front: [], back: [] });
-  const [entries, setEntries] = useState<Game[]>([]);
+  setCurrentTab: Dispatch<SetStateAction<Tabs>>; 
+}) { 
   const [currentGame, setCurrentGame] = useState<string>();
-
-  const sortedGameData = entries.slice().sort((a, b) => {
-    return (
-      statusOrder[a.status as keyof typeof statusOrder] -
-      statusOrder[b.status as keyof typeof statusOrder]
-    );
-  });
-
-  const currentGameData = entries.find((g) => g.title === currentGame);
-
+ 
   return (
     <> 
       <Rain/>
@@ -75,29 +59,11 @@ export function VideoGamePage({
           display: "flex",
           justifyContent: "space-evenly",
           flexDirection: "row",
-          position: "relative",
+          position: "relative", 
         }}
       > 
-        <div style={{ overflowY: "auto", width: "40%", zIndex: "1" }}>
-          {sortedGameData.map((g) => (
-            <h2
-              key={g.title}
-              onClick={() => setCurrentGame(g.title)}
-              style={{
-                color: colorByStatus(
-                  g.status as
-                    | "Playing"
-                    | "Finished"
-                    | "Fully Finished"
-                    | "Not Applicable"
-                    | "Backlog",
-                ),
-                cursor: "pointer",
-              }}
-            >
-              {currentGame === g.title && ">"} {g.title}
-            </h2>
-          ))}
+        <div style={{ overflowY: "auto", width: "40%", zIndex: "1", 
+           }}> 
         </div>
         <div
           style={{
@@ -109,33 +75,7 @@ export function VideoGamePage({
             backgroundColor: "rgba(53, 6, 59, 0.3)",
             overflow:'auto'
           }}
-        >
-          {currentGameData && (
-            <>
-              <h1 style={{ textAlign: "center" }}>
-                {" "}
-                &gt; {currentGameData.title} &lt;
-              </h1>
-              <h3 style={{ textAlign: "center" }}>-- Tags --</h3>
-              <div
-                style={{ display: "flex", gap: "20px", padding: "0px 20px" }}
-              >
-                {currentGameData.genre.map((g) => (
-                  <div
-                    key={g}
-                    style={{
-                      backgroundColor: "#ff00cf30",
-                      borderRadius: "15px",
-                      padding: "10px",
-                      border: "2px solid #ff00cf80",
-                    }}
-                  >
-                    {g}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+        > 
         </div>
       </div>
     </>

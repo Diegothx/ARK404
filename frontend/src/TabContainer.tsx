@@ -41,11 +41,11 @@ export function TabContainer() {
   }, []);
   return (
     <div
-      style={{
-        position: "relative",
+      style={{ 
         alignContent: "center",
-        width: "100vw",
+        overflow: "scroll",
         height: "100vh",
+        width: "100vw",
         background:
           "linear-gradient(10deg, rgb(5, 2, 19) 0%, rgb(9, 9, 66) 80%, #1d385f 100%)",
       }}
