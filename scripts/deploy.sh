@@ -49,8 +49,4 @@ docker image prune -f
 echo "✅ Servicios activos:"
 docker compose -f $COMPOSE_FILE ps
 
-# Verificar migraciones
-echo "📊 Estado de migraciones:"
-docker compose -f $COMPOSE_FILE exec backend alembic current
-
 echo "🎉 Deploy completado!"

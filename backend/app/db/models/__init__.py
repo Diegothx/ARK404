@@ -1,3 +1,3 @@
-from .guestbook import GuestbookEntry
+from .quotes import QuoteEntry
 
-__all__ = ["GuestbookEntry"]
+__all__ = ["QuoteEntry"]

@@ -29,4 +29,16 @@ export class HealthService {
             url: '/db-test',
         });
     }
+    /**
+     * Get Quote
+     * Retrieve a random quote from the database.
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static getQuoteGetQuoteGet(): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/get-quote',
+        });
+    }
 }

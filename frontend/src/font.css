@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Alvera Bold Circle";
+  src:
+    url("/src/assets/alvera-demo/AlveraDEMO-BoldCircle.woff2") format("woff2"),
+    url("/src/assets/alvera-demo/AlveraDEMO-BoldCircle.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alvera Bold Square";
+  src: url("/src/assets/alvera-demo/AlveraDEMO-BoldSquare.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alvera Regular Circle";
+  src: url("/src/assets/alvera-demo/AlveraDEMO-RegularCircle.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alvera Regular Square";
+  src: url("/src/assets/alvera-demo/AlveraDEMO-RegularSquare.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

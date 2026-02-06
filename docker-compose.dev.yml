@@ -33,6 +33,9 @@ services:
       context: ./frontend
     ports:
       - "${FRONTEND_PORT}:3000"
+    environment:
+      NODE_ENV: development
+      VITE_API_URL: http://localhost:${BACKEND_PORT}/api
     volumes:
     - ./frontend:/app:cached       # Mount source for hot reload
 
