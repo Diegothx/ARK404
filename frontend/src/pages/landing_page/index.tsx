@@ -1,7 +1,6 @@
 import { useState, JSX, useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs, ServerHealthStatus} from "../../TabContainer"; 
-import { HealthService } from "../../api";
-
+import { QuotesService } from "../../api";
 const randomQuotes = [
   "Loading Assets...",
   "Just Vibing...",
@@ -92,7 +91,7 @@ export function LandingPage({
  
   useEffect(() => {
     makeItRain();
-    HealthService.getQuoteGetQuoteGet()
+    QuotesService.getQuoteGetQuoteGet()
       .then(response => {
         if (response.quote) {
           setQuote(response.quote);
