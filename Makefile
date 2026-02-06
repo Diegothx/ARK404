@@ -27,6 +27,9 @@ migrate:
 
 ## Create new migration
 makemigration:
+ifndef m
+	$(error You must provide a migration message. Example: make makemigration m="add_users_table")
+endif
 	docker compose -f $(DEV_COMPOSE) exec backend \
 		alembic revision --autogenerate -m "$(m)"
 
