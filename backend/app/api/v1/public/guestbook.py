@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.db.models.guestbook import GuestbookEntry
 from app.schemas.guestbook import GuestbookCreate, GuestbookOut
-
+from app.utils.email import send_guestbook_notification
 router = APIRouter(
     prefix="/guestbook",
     tags=["Guestbook"],
@@ -19,6 +19,14 @@ def create_entry(
     db.add(db_entry)
     db.commit()
     db.refresh(db_entry)
+
+
+    BackgroundTasks.add_task(
+        send_guestbook_notification,
+        db_entry.name,
+        db_entry.message,
+        db_entry.email
+    )
     return db_entry
 
 @router.get("/", response_model=list[GuestbookOut])
