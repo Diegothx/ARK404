@@ -3,9 +3,10 @@ uvicorn[standard]
 python-jose[cryptography]
 passlib[bcrypt]
 sqlalchemy
-psycopg2-binary  # PostgreSQL driver
-python-dotenv    # To read .env locally
+psycopg2-binary
+python-dotenv 
 alembic
 pydantic
 email-validator
 python-multipart==0.0.6 
+aiosmtplib
