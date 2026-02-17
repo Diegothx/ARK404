@@ -173,8 +173,12 @@ const Guestbook = ({
                   }}
                 >
                   <strong>{entry.name}</strong>
-                  <em style={{color: '#bbb'}}>{new Date(entry.created_at).toLocaleString()}</em>
-                  {isAdminMode && (
+                  <em style={{color: '#bbb'}}>
+                    {String(new Date(entry.created_at).getDate()).padStart(2, '0')}/
+                    {String(new Date(entry.created_at).getMonth() + 1).padStart(2, '0')}/
+                    {String(new Date(entry.created_at).getFullYear()).slice(-2)}
+                  </em>
+                          {isAdminMode && (
                     <button
                       onClick={async () => {
                         try {
