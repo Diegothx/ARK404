@@ -94,3 +94,7 @@ Delete frontend API client:
 `make clean-frontend-api`
 
 3. Production Mode
+
+bdd: https://supabase.com/dashboard/project/feurozltbvtwcdsrccse
+backend: https://dashboard.render.com/web/srv-d6b2s5pr0fns73fdhhp0
+frontend: https://diegothx.github.io/ARK404/
