@@ -12,6 +12,9 @@ def admin_login(
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db)
 ):
+    if not form_data.username or not form_data.password:
+        raise HTTPException(status_code=400, detail="Invalid form data")
+    
     user = db.query(User).filter(
         (User.username == form_data.username) |
         (User.email == form_data.username)

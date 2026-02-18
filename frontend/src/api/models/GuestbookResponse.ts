@@ -2,11 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type GuestbookOut = {
+export type GuestbookResponse = {
     name: string;
     email?: (string | null);
     message: string;
     id: number;
     created_at: string;
+    updated_at: string;
 };
 

@@ -46,4 +46,24 @@ export class AdminService {
             },
         });
     }
+    /**
+     * Delete Entry
+     * @param entryId
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static deleteEntryGuestbookEntryIdDelete(
+        entryId: number,
+    ): CancelablePromise<Record<string, any>> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/guestbook/{entry_id}',
+            path: {
+                'entry_id': entryId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
 }

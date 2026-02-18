@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
-from datetime import datetime
+from datetime import datetime 
 
 class GuestbookCreate(BaseModel):
     name: str = Field(..., max_length=50)
@@ -8,10 +8,7 @@ class GuestbookCreate(BaseModel):
     message: str = Field(..., max_length=300)
  
 
-class GuestbookOut(GuestbookCreate):
+class GuestbookResponse(GuestbookCreate):
     id: int
     created_at: datetime
-
-    class Config:
-        from_attributes = True  # SQLAlchemy compatibility
-
+    updated_at: datetime 

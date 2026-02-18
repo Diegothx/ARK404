@@ -1,10 +1,10 @@
-from pydantic import BaseModel 
+from pydantic import BaseModel
+from datetime import datetime
 
-class User(BaseModel):
+class UserResponse(BaseModel):
     id: int
     username: str
     email: str
     role: str
-
-    class Config:
-        orm_mode = True
+    created_at: datetime
+    updated_at: datetime

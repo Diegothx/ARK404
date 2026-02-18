@@ -1,7 +1,11 @@
 from datetime import date
 from typing import List, Optional
-from pydantic import BaseModel
 from enum import Enum
+from sqlalchemy import String, Integer, Float, Date, Enum as SQLEnum
+from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.orm import Mapped, mapped_column
+from app.db.base import Base
+
 
 class GameStatus(str, Enum):
     wishlist = "wishlist"
@@ -16,16 +20,40 @@ class GameStatus(str, Enum):
     dropped = "dropped"
     soft_dropped = "soft_dropped"
 
-class GameBase(BaseModel):
-    title: str
-    status: GameStatus = GameStatus.backlog
-    platform: Optional[List[str]] = []
-    genre: Optional[List[str]] = []
-    release_year: Optional[int] = None 
-    hours_played: Optional[int] = 0
-    rating: Optional[float] = None
-    priority: Optional[str] = None
-    notes: Optional[str] = None
-    start_date: Optional[date] = None
-    finish_date: Optional[date] = None
- 
+
+class GameBase(Base):
+    __tablename__ = "game_backlog"
+
+    title: Mapped[str] = mapped_column(String, nullable=False)
+
+    status: Mapped[GameStatus] = mapped_column(
+        SQLEnum(GameStatus),
+        default=GameStatus.backlog,
+        nullable=False,
+    )
+
+    platform: Mapped[Optional[List[str]]] = mapped_column(
+        ARRAY(String),
+        default=list,
+        nullable=True,
+    )
+
+    genre: Mapped[Optional[List[str]]] = mapped_column(
+        ARRAY(String),
+        default=list,
+        nullable=True,
+    )
+
+    release_year: Mapped[Optional[int]] = mapped_column(Integer)
+
+    hours_played: Mapped[Optional[int]] = mapped_column(Integer, default=0)
+
+    rating: Mapped[Optional[float]] = mapped_column(Float)
+
+    priority: Mapped[Optional[str]] = mapped_column(String)
+
+    notes: Mapped[Optional[str]] = mapped_column(String)
+
+    start_date: Mapped[Optional[date]] = mapped_column(Date)
+
+    finish_date: Mapped[Optional[date]] = mapped_column(Date)

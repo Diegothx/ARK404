@@ -9,7 +9,7 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Body_admin_login_admin_login_post } from './models/Body_admin_login_admin_login_post';
 export type { GuestbookCreate } from './models/GuestbookCreate';
-export type { GuestbookOut } from './models/GuestbookOut';
+export type { GuestbookResponse } from './models/GuestbookResponse';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { QuoteCreate } from './models/QuoteCreate';
 export type { ValidationError } from './models/ValidationError';

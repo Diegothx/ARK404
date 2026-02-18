@@ -9,3 +9,6 @@ backend/venv/
 ### Ignore frontend build and dependencies
 frontend/node_modules/
 frontend/build/
+
+.venv/
+.vscode/
