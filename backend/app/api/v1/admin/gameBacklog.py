@@ -3,10 +3,10 @@ from sqlalchemy.orm import Session
 from app.db.models import GameBase  # SQLAlchemy model matching DB schema
 from app.db.session import get_db
 from app.dependencies.admin_required import admin_required
-from schemas.gameBacklog import GameCreate, GameUpdate, GameResponse
+from app.schemas.gameBacklog import GameCreate, GameUpdate, GameResponse
  
-router = APIRouter(tags=["Admin"])
-@router.post("/games/", response_model=GameResponse)
+router = APIRouter(prefix="/games",tags=["Admin"])
+@router.post("/", response_model=GameResponse)
 def create_game(
     game: GameCreate, 
     db: Session = Depends(get_db),
@@ -24,14 +24,15 @@ def create_game(
             status_code=400,
             detail=f"Game '{game.title}' already exists in your backlog."
         )
-
-    db_game = GameBase(**game.dict())
+    data = game.model_dump()
+    data["notes"] = data.get("notes") or []
+    db_game = GameBase(**data) 
     db.add(db_game)
     db.commit()
     db.refresh(db_game)
     return db_game
 
-@router.put("/games/{game_id}", response_model=GameResponse)
+@router.put("/{game_id}", response_model=GameResponse)
 def update_game(
     game_id: int, 
     game: GameUpdate, 
@@ -47,7 +48,7 @@ def update_game(
     db.refresh(db_game)
     return db_game
 
-@router.delete("/games/{game_id}")
+@router.delete("/{game_id}")
 def delete_game(
     game_id: int,  
     db: Session = Depends(get_db),

@@ -30,6 +30,7 @@ services:
       ADMIN_USERNAME: ${ADMIN_USERNAME}
       ADMIN_EMAIL: ${ADMIN_EMAIL}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      DRAWING_UPLOAD_DIR: ${DRAWING_UPLOAD_DIR}
 
 
     depends_on:
@@ -43,7 +44,7 @@ services:
       - "${FRONTEND_PORT}:3000"
     environment:
       NODE_ENV: development
-      VITE_BACKEND_URL: http://localhost:${BACKEND_PORT}/api
+      VITE_BACKEND_URL: http://localhost:${BACKEND_PORT}
     volumes:
     - ./frontend:/app:cached
     - frontend_node_modules:/app/node_modules

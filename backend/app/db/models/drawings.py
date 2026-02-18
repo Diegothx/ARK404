@@ -4,7 +4,6 @@ from sqlalchemy import String,  Date, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 
-
 class Drawing(Base):
     __tablename__ = "drawings"
     title: Mapped[str] = mapped_column(String, nullable=False)
@@ -17,13 +16,14 @@ class Drawing(Base):
     is_public: Mapped[bool] = mapped_column(default=False)
 
     collections_assoc: Mapped[list["DrawingCollection"]] = relationship(
-        "DrawingCollection", back_populates="drawing", cascade="all, delete-orphan"
+        "DrawingCollection", back_populates="drawing", cascade="all, delete-orphan", overlaps="collections"
     )
     collections: Mapped[list["Collection"]] = relationship(
-        "Collection", secondary="drawing_collections", back_populates="drawings", overlaps="collections_assoc"
+        "Collection", secondary="drawing_collections",
+        back_populates="drawings", overlaps="collections_assoc,drawings_assoc"
     )
 
- 
+
 class Collection(Base):
     __tablename__ = "collections"
     name: Mapped[str] = mapped_column(String, nullable=False)
@@ -31,12 +31,14 @@ class Collection(Base):
     type: Mapped[Optional[str]] = mapped_column(String, nullable=True)  # sketchbook, franchise, challenge, year, project
 
     drawings_assoc: Mapped[list["DrawingCollection"]] = relationship(
-        "DrawingCollection", back_populates="collection", cascade="all, delete-orphan"
+        "DrawingCollection", back_populates="collection", cascade="all, delete-orphan", overlaps="drawings"
     )
     drawings: Mapped[list["Drawing"]] = relationship(
-        "Drawing", secondary="drawing_collections", back_populates="collections"
+        "Drawing", secondary="drawing_collections", back_populates="collections",
+        overlaps="drawings_assoc,collections_assoc"
     )
- 
+
+
 class DrawingCollection(Base):
     __tablename__ = "drawing_collections"
     
@@ -46,5 +48,13 @@ class DrawingCollection(Base):
     position: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)  # page order 
 
     # Relationships
-    drawing: Mapped["Drawing"] = relationship("Drawing", back_populates="collections_assoc")
-    collection: Mapped["Collection"] = relationship("Collection", back_populates="drawings_assoc")
+    drawing: Mapped["Drawing"] = relationship(
+        "Drawing",
+        back_populates="collections_assoc",
+        overlaps="drawings,collections"
+    )
+    collection: Mapped["Collection"] = relationship(
+        "Collection",
+        back_populates="drawings_assoc",
+        overlaps="drawings,collections"
+    )

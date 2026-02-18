@@ -11,6 +11,12 @@ export type { Body_admin_login_admin_login_post } from './models/Body_admin_logi
 export type { Body_upload_drawing_drawings__post } from './models/Body_upload_drawing_drawings__post';
 export type { Collection } from './models/Collection';
 export type { Drawing } from './models/Drawing';
+export type { GameCreate } from './models/GameCreate';
+export type { GameNoteSchema } from './models/GameNoteSchema';
+export { GamePriority } from './models/GamePriority';
+export type { GameResponse } from './models/GameResponse';
+export { GameStatus } from './models/GameStatus';
+export type { GameUpdate } from './models/GameUpdate';
 export type { GuestbookCreate } from './models/GuestbookCreate';
 export type { GuestbookResponse } from './models/GuestbookResponse';
 export type { HTTPValidationError } from './models/HTTPValidationError';
@@ -19,6 +25,7 @@ export type { ValidationError } from './models/ValidationError';
 
 export { AdminService } from './services/AdminService';
 export { DrawingsService } from './services/DrawingsService';
+export { GameService } from './services/GameService';
 export { GuestbookService } from './services/GuestbookService';
 export { HealthService } from './services/HealthService';
 export { QuotesService } from './services/QuotesService';
