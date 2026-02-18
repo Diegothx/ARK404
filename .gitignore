@@ -13,4 +13,4 @@ frontend/build/
 
 .venv/
 .vscode/
- 
+dist/
