@@ -1,7 +1,7 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from app.api.v1.public import   health, quotes, guestbook  # Import quotes router
-from app.api.v1.admin import login, quotes as adminQuotes, guestbook as adminGuestbook  # Ensure admin login routes are included
+from app.api.v1.public import   health, quotes, guestbook, drawing  # Import quotes router
+from app.api.v1.admin import login, quotes as adminQuotes, guestbook as adminGuestbook, drawing as adminDrawing  # Ensure admin login routes are included
 from app.initial_data import create_admin
 
 import os
@@ -14,6 +14,8 @@ app.include_router(guestbook.router)
 app.include_router(login.router) 
 app.include_router(adminQuotes.router)
 app.include_router(adminGuestbook.router)
+app.include_router(adminDrawing.router)
+app.include_router(drawing.router)
 # Detect if running in dev
 ENV = os.getenv("ENV", "development")
 if ENV == "production":
