@@ -20,7 +20,7 @@ class Drawing(Base):
         "DrawingCollection", back_populates="drawing", cascade="all, delete-orphan"
     )
     collections: Mapped[list["Collection"]] = relationship(
-        "Collection", secondary="drawing_collections", back_populates="drawings"
+        "Collection", secondary="drawing_collections", back_populates="drawings", overlaps="collections_assoc"
     )
 
  

@@ -9,6 +9,8 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Body_admin_login_admin_login_post } from './models/Body_admin_login_admin_login_post';
 export type { Body_upload_drawing_drawings__post } from './models/Body_upload_drawing_drawings__post';
+export type { Collection } from './models/Collection';
+export type { Drawing } from './models/Drawing';
 export type { GuestbookCreate } from './models/GuestbookCreate';
 export type { GuestbookResponse } from './models/GuestbookResponse';
 export type { HTTPValidationError } from './models/HTTPValidationError';

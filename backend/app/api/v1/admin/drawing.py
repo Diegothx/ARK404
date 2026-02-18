@@ -31,7 +31,7 @@ def upload_drawing(
     admin = Depends(admin_required)
 ):
     # 1️⃣ Save file locally
-    filename = f"{uuid4()}_{file.filename}"
+    filename = f"{uuid4()}_{title.replace(' ', '_')}.{file.filename.split('.')[-1]}"
     file_path = os.path.join(DRAWING_UPLOAD_DIR, filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)

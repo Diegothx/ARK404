@@ -1,29 +1,31 @@
 import { useState } from "react";
 
 export function ImageWithTooltip({
-  draw,
+  drawURL,
   rotation,
+  altText,
   idx,
 }: {
-  draw: string;
+  drawURL: string;
   rotation: number;
+  altText: string;
   idx: number;
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const altText = draw.split(".")[0];
-
+ 
   return (
     <div
-      style={{ position: "relative", display: "inline-block", width: "100%" }}
+      style={{ position: "relative",
+          width: "300px", display: "inline-block" }}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
       <img
         key={idx}
-        src={`art/${draw}`}
+        src={drawURL}
         alt={altText}
-        style={{
-          width: "100%",
+        style={{ 
+          width: "300px",
           height: "auto",
           objectFit: "contain",
           transform: `rotate(${rotation}deg)`,
@@ -42,7 +44,7 @@ export function ImageWithTooltip({
         <span
           style={{
             position: "absolute",
-            bottom: "100%",
+            bottom: "105%",
             left: "50%",
             transform: "translateX(-50%)",
             marginBottom: "6px",

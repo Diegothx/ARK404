@@ -17,3 +17,4 @@ class Base(DeclarativeBase):
         onupdate=func.now(),
         nullable=False
     )
+ 

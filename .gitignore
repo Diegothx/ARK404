@@ -5,6 +5,7 @@ node_modules/
 ### Ignore backend cache and virtual environment
 __pycache__/
 backend/venv/
+backend/uploads/
 
 ### Ignore frontend build and dependencies
 frontend/node_modules/
@@ -12,3 +13,4 @@ frontend/build/
 
 .venv/
 .vscode/
+ 

@@ -3,6 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Body_upload_drawing_drawings__post } from '../models/Body_upload_drawing_drawings__post';
+import type { Collection } from '../models/Collection';
+import type { Drawing } from '../models/Drawing';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -29,12 +31,12 @@ export class DrawingsService {
     /**
      * Get Drawings By Year
      * @param year
-     * @returns any Successful Response
+     * @returns Drawing Successful Response
      * @throws ApiError
      */
     public static getDrawingsByYearDrawingsYearYearGet(
         year: number,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<Array<Drawing>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/drawings/year/{year}',
@@ -48,10 +50,10 @@ export class DrawingsService {
     }
     /**
      * Get Drawing Years
-     * @returns any Successful Response
+     * @returns number Successful Response
      * @throws ApiError
      */
-    public static getDrawingYearsDrawingsYearsGet(): CancelablePromise<any> {
+    public static getDrawingYearsDrawingsYearsGet(): CancelablePromise<Array<number>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/drawings/years',
@@ -59,10 +61,10 @@ export class DrawingsService {
     }
     /**
      * List Collections
-     * @returns any Successful Response
+     * @returns Collection Successful Response
      * @throws ApiError
      */
-    public static listCollectionsDrawingsCollectionsGet(): CancelablePromise<any> {
+    public static listCollectionsDrawingsCollectionsGet(): CancelablePromise<Array<Collection>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/drawings/collections',

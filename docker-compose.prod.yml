@@ -37,7 +37,7 @@ services:
     environment:
       NODE_ENV: production
       # Variable para API calls
-      VITE_API_URL: /api  # Para Vite, ajusta según tu build
+      VITE_BACKEND_URL: /api  # Para Vite, ajusta según tu build
     depends_on:
       - backend
     restart: unless-stopped

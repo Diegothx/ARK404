@@ -15,10 +15,6 @@ export function LandingPage({
   showIcons: boolean;
   setShowIcons: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [rainDrops, setRainDrops] = useState<{
-    front: JSX.Element[];
-    back: JSX.Element[];
-  }>({ front: [], back: [] }); 
   const [quote, setQuote] = useState(""); 
   const handleKeyDown =  (ev: KeyboardEvent) => {
     if (ev.code === "Enter") {
