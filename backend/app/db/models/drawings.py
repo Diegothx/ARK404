@@ -1,8 +1,9 @@
-from datetime import date 
+from datetime import date
 from typing import  Optional
-from sqlalchemy import String,  Date, ForeignKey, Integer
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.db.base import Base
+from sqlalchemy import String,  Date,  ForeignKey, Integer
+from sqlalchemy.orm import   Mapped, mapped_column, relationship
+from app.db.base import Base 
+
 
 class Drawing(Base):
     __tablename__ = "drawings"
@@ -41,12 +42,12 @@ class Collection(Base):
 
 class DrawingCollection(Base):
     __tablename__ = "drawing_collections"
+    id = None
     
     drawing_id: Mapped[int] = mapped_column(ForeignKey("drawings.id"), primary_key=True)
     collection_id: Mapped[int] = mapped_column(ForeignKey("collections.id"), primary_key=True)
     
-    position: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)  # page order 
-
+    position: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)  # page order  
     # Relationships
     drawing: Mapped["Drawing"] = relationship(
         "Drawing",
@@ -57,4 +58,4 @@ class DrawingCollection(Base):
         "Collection",
         back_populates="drawings_assoc",
         overlaps="drawings,collections"
-    )
+    ) 

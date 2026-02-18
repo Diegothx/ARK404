@@ -7,16 +7,17 @@ from app.schemas.quote import QuoteCreate
 
 router = APIRouter(tags=["Admin"])
 
-@router.post("/admin/add-quote")
-def add_quote(
-    payload: QuoteCreate,
+@router.post("/admin/add-quotes")
+def add_quotes(
+    payload: list[QuoteCreate],
     db: Session = Depends(get_db),
     user=Depends(admin_required),
 ):
-    db.execute(
-        text("INSERT INTO quotes (content) VALUES (:content)"),
-        {"content": payload.content},
-    )
+    for quote in payload:
+        db.execute(
+            text("INSERT INTO quotes (content) VALUES (:content)"),
+            {"content": quote.content},
+        )
     db.commit()
-    return {"message": "Quote added successfully"}
+    return {"message": "Quotes added successfully"}
 

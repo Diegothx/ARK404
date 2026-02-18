@@ -1,6 +1,6 @@
 from fastapi import APIRouter,  Depends, HTTPException 
 from sqlalchemy.orm import Session 
-from app.db.models import GameBase  # SQLAlchemy model matching DB schema
+from app.db.models import GameBase, GameNote  # SQLAlchemy model matching DB schema
 from app.db.session import get_db
 from app.dependencies.admin_required import admin_required
 from app.schemas.gameBacklog import GameCreate, GameUpdate, GameResponse
@@ -25,8 +25,12 @@ def create_game(
             detail=f"Game '{game.title}' already exists in your backlog."
         )
     data = game.model_dump()
-    data["notes"] = data.get("notes") or []
-    db_game = GameBase(**data) 
+    notes_data = data.pop("notes", [])
+    
+    db_game = GameBase(**data)
+
+    for note in notes_data:
+        db_game.notes.append(GameNote(**note))
     db.add(db_game)
     db.commit()
     db.refresh(db_game)

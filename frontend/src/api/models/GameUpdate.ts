@@ -17,5 +17,6 @@ export type GameUpdate = {
     notes?: (Array<GameNoteSchema> | null);
     start_date?: (string | null);
     finish_date?: (string | null);
+    collection_id?: (number | null);
 };
 

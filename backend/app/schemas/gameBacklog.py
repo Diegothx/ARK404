@@ -21,6 +21,7 @@ class GameCreate(BaseModel):
     notes: Optional[List[GameNoteSchema]] = None
     start_date: Optional[date] = None
     finish_date: Optional[date] = None
+    collection_id: Optional[int] = None  # collection_id for association
 
 class GameUpdate(BaseModel):
     title: Optional[str] = None
@@ -34,6 +35,7 @@ class GameUpdate(BaseModel):
     notes: Optional[List[GameNoteSchema]] = None
     start_date: Optional[date] = None
     finish_date: Optional[date] = None
+    collection_id: Optional[int] = None  # collection_id for association
 
 
 class GameResponse(GameCreate):

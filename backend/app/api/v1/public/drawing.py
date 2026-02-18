@@ -37,3 +37,13 @@ def get_drawing_years(db: Session = Depends(get_db)):
 @router.get("/collections", response_model=list[Collection])
 def list_collections(db: Session = Depends(get_db)):
     return db.query(CollectionModel).all()
+
+# -----------------------------
+# Retrieve drawings in a collection
+# -----------------------------
+@router.get("/collections/{collection_id}", response_model=list[Drawing])
+def get_drawings_by_collection(collection_id: int, db: Session = Depends(get_db)):
+    collection = db.query(CollectionModel).filter(CollectionModel.id == collection_id).first()
+    if not collection:
+        return []
+    return collection.drawings

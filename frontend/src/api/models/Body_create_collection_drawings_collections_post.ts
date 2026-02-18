@@ -2,10 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Collection = {
+export type Body_create_collection_drawings_collections_post = {
     name: string;
-    description?: (string | null);
-    type?: (string | null);
-    id: number;
+    description?: string;
+    type?: string;
 };
 

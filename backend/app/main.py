@@ -4,13 +4,19 @@ from app.api.v1.public import health, quotes, guestbook, drawing, gameBacklog
 from app.api.v1.admin import login, quotes as adminQuotes, guestbook as adminGuestbook, drawing as adminDrawing, gameBacklog as adminGameBacklog
 from app.initial_data import create_admin
 from fastapi.staticfiles import StaticFiles
+from contextlib import asynccontextmanager
+ 
 import os
 
  
-def lifespan(app: FastAPI): 
-    create_admin() 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_admin()
     yield
-app = FastAPI(title="Ark Backend")
+
+app = FastAPI(title="Ark Backend", lifespan=lifespan)
+
 
 app.include_router(health.router)
 app.include_router(quotes.router)
@@ -32,10 +38,14 @@ if ENV == "production":
 else:
     allow_origins = ["*"]  # Dev: allow all
 
-UPLOAD_DIR = os.getenv("DRAWING_UPLOAD_DIR", "uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+DRAWING_UPLOAD_DIR = os.getenv("DRAWING_UPLOAD_DIR", "uploads")
+SCREENSHOT_UPLOAD_DIR = os.getenv("SCREENSHOT_UPLOAD_DIR", "uploads")
 
-app.mount("/uploads/drawings", StaticFiles(directory=UPLOAD_DIR), name="drawings")
+os.makedirs(DRAWING_UPLOAD_DIR, exist_ok=True)
+os.makedirs(SCREENSHOT_UPLOAD_DIR, exist_ok=True)
+
+app.mount("/uploads/drawings", StaticFiles(directory=DRAWING_UPLOAD_DIR), name="drawings")
+app.mount("/uploads/screenshots", StaticFiles(directory=SCREENSHOT_UPLOAD_DIR), name="screenshots")
 
 app.add_middleware(
     CORSMiddleware,

@@ -11,12 +11,13 @@ class DrawingCollection(BaseModel):
     position: Optional[int] = None 
 
 
-# ---- Collection schema ----
-class Collection(BaseModel):
-    id: int
+class CollectionBase(BaseModel):
     name: str
     description: Optional[str] = None
-    type: Optional[str] = None 
+    type: Optional[str] = None  # sketchbook, franchise, challenge, year, project
+# ---- Collection schema ----
+class Collection(CollectionBase):
+    id: int
 
 
 # ---- Drawing schema ----
@@ -29,4 +30,8 @@ class Drawing(BaseModel):
     drawing_date: Optional[date] = None
     is_favorite: bool = False
     is_public: bool = False
-    collections: Optional[List[Collection]] = [] 
+    collections: Optional[List[Collection]] = []
+
+class CollectionDrawingAssignment(BaseModel):
+    collection_ids: List[int] | None = None
+    drawing_ids: List[int] | None = None

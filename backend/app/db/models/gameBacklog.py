@@ -5,6 +5,7 @@ from sqlalchemy import String, Integer, Float, Date, Enum as SQLEnum, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
+from app.db.models.drawings import Collection  # Import Collection for relationship
 
 class GamePriority(str, Enum):
     low = "low"
@@ -63,7 +64,13 @@ class GameBase(Base):
     finish_date: Mapped[Optional[date]] = mapped_column(Date)
     # Relationship to diary-style notes
     notes: Mapped[List["GameNote"]] = relationship("GameNote", back_populates="game", cascade="all, delete-orphan")
+ 
 
+    # Optional link to a Collection
+    collection_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("collections.id"), nullable=True
+    )
+    collection: Mapped[Optional["Collection"]] = relationship("Collection")
 
 class GameNote(Base):
     __tablename__ = "game_notes"
@@ -71,5 +78,6 @@ class GameNote(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     game_id: Mapped[int] = mapped_column(ForeignKey("game_backlog.id"), nullable=False)
     content: Mapped[str] = mapped_column(String, nullable=False)
+    #media_url: Mapped[Optional[str]] = mapped_column(String, nullable=True)
 
     game: Mapped["GameBase"] = relationship("GameBase", back_populates="notes")

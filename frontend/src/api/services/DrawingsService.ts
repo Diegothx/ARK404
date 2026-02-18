@@ -9,6 +9,37 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class DrawingsService {
     /**
+     * List Collections
+     * @returns Collection Successful Response
+     * @throws ApiError
+     */
+    public static listCollectionsDrawingsCollectionsGet(): CancelablePromise<Array<Collection>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/drawings/collections',
+        });
+    }
+    /**
+     * Get Drawings By Collection
+     * @param collectionId
+     * @returns Drawing Successful Response
+     * @throws ApiError
+     */
+    public static getDrawingsByCollectionDrawingsCollectionsCollectionIdGet(
+        collectionId: number,
+    ): CancelablePromise<Array<Drawing>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/drawings/collections/{collection_id}',
+            path: {
+                'collection_id': collectionId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
      * Get Drawings By Year
      * @param year
      * @returns Drawing Successful Response
@@ -37,17 +68,6 @@ export class DrawingsService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/drawings/years',
-        });
-    }
-    /**
-     * List Collections
-     * @returns Collection Successful Response
-     * @throws ApiError
-     */
-    public static listCollectionsDrawingsCollectionsGet(): CancelablePromise<Array<Collection>> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/drawings/collections',
         });
     }
 }

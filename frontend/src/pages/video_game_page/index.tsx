@@ -1,7 +1,9 @@
 import { useState, JSX, useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs } from "../../TabContainer";
 import { Rain } from "../../components/Rain"; 
-import { GameService, GameResponse, GameStatus} from "../../api";
+import { GameService, GameResponse, GameStatus, Drawing, DrawingsService} from "../../api";
+import { ImageWithTooltip } from "../../components/ImageWithTooltip";
+import { getImageURL } from "../../utils/imageURL";
 
 const colorByStatus = (
   status: GameStatus,
@@ -41,6 +43,10 @@ export function VideoGamePage({
 }) { 
   const [currentGameId, setCurrentGameId] = useState<number | null>(null);
   const [gameList, setGameList] = useState<GameResponse[]>([]);
+  const [currentGameDrawings, setCurrentGameDrawings] = useState<Drawing[]>([])
+
+  const selectedGame = gameList.find((g) => g.id === currentGameId);
+  
   useEffect(() => {
     async function fetchGames() {
       const games = await GameService.listGamesGamesGet();
@@ -52,9 +58,19 @@ export function VideoGamePage({
       setGameList(games);
     }
     fetchGames();
-  }, []); 
+  }, []);  
  
-  const selectedGame = gameList.find((g) => g.id === currentGameId);
+
+ useEffect(() => {
+    async function fetchDrawings() {
+      if (selectedGame != null && selectedGame.collection_id != null) {
+        const drawings = await DrawingsService.getDrawingsByCollectionDrawingsCollectionsCollectionIdGet(selectedGame.collection_id);
+        setCurrentGameDrawings(drawings);
+      }
+    }
+    fetchDrawings();
+  }, [selectedGame]);
+
   return (
     <> 
       <Rain/>
@@ -131,6 +147,51 @@ export function VideoGamePage({
                   </div>
                 ))}
               </div>
+              {selectedGame.notes != undefined && (
+                <div style={{ margin: "20px" }}>
+                  <h3 style={{ textAlign: "center" }}>-- Notas --</h3>
+                  <div
+                    style={{
+                      display:'flex', flexDirection:'column',  
+                    }}
+                  >
+                    {selectedGame.notes.map((note, idx) => { 
+                          return (
+                            <h4 key={idx}>
+                              {"> "}
+                              {note.content}
+                            </h4>
+                          );
+                        })} 
+                  </div>
+                </div>
+              )}
+              {currentGameDrawings.length > 0 && (
+                <div style={{ margin: "20px" }}>
+                  <h3 style={{ textAlign: "center" }}>-- Galeria --</h3>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns:
+                        "repeat(auto-fit, minmax(200px, 1fr))",
+                      gap: "20px",
+                    }}
+                  >
+                    {currentGameDrawings.map((draw, idx) => {
+                      const rotation = Math.random() * 10 - 5;
+                      return (
+                        <ImageWithTooltip
+                          key={idx}
+                          drawURL={getImageURL(draw.file_url)}
+                          rotation={rotation}
+                          altText={draw.title || `Drawing ${draw.id}`}
+                          idx={idx}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </>
         )}
         </div>

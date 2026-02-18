@@ -16,6 +16,7 @@ export type GameResponse = {
     notes?: (Array<GameNoteSchema> | null);
     start_date?: (string | null);
     finish_date?: (string | null);
+    collection_id?: (number | null);
     id: number;
     created_at: string;
     updated_at: string;

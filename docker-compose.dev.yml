@@ -31,8 +31,8 @@ services:
       ADMIN_EMAIL: ${ADMIN_EMAIL}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       DRAWING_UPLOAD_DIR: ${DRAWING_UPLOAD_DIR}
-
-
+      SCREENSHOT_UPLOAD_DIR: ${SCREENSHOT_UPLOAD_DIR}
+ 
     depends_on:
       db:
         condition: service_healthy 

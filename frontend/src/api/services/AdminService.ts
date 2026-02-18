@@ -3,7 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Body_admin_login_admin_login_post } from '../models/Body_admin_login_admin_login_post';
+import type { Body_create_collection_drawings_collections_post } from '../models/Body_create_collection_drawings_collections_post';
 import type { Body_upload_drawing_drawings__post } from '../models/Body_upload_drawing_drawings__post';
+import type { CollectionDrawingAssignment } from '../models/CollectionDrawingAssignment';
 import type { GameCreate } from '../models/GameCreate';
 import type { GameResponse } from '../models/GameResponse';
 import type { GameUpdate } from '../models/GameUpdate';
@@ -32,17 +34,17 @@ export class AdminService {
         });
     }
     /**
-     * Add Quote
+     * Add Quotes
      * @param requestBody
      * @returns any Successful Response
      * @throws ApiError
      */
-    public static addQuoteAdminAddQuotePost(
-        requestBody: QuoteCreate,
+    public static addQuotesAdminAddQuotesPost(
+        requestBody: Array<QuoteCreate>,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/admin/add-quote',
+            url: '/admin/add-quotes',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -104,6 +106,64 @@ export class AdminService {
             path: {
                 'drawing_id': drawingId,
             },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Create Collection
+     * @param formData
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static createCollectionDrawingsCollectionsPost(
+        formData: Body_create_collection_drawings_collections_post,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/drawings/collections',
+            formData: formData,
+            mediaType: 'application/x-www-form-urlencoded',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Delete Collection
+     * @param collectionId
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static deleteCollectionDrawingsCollectionsCollectionIdDelete(
+        collectionId: number,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/drawings/collections/{collection_id}',
+            path: {
+                'collection_id': collectionId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Assign Drawings To Collections
+     * @param requestBody
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public static assignDrawingsToCollectionsDrawingsCollectionsAssignPost(
+        requestBody: CollectionDrawingAssignment,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/drawings/collections/assign',
+            body: requestBody,
+            mediaType: 'application/json',
             errors: {
                 422: `Validation Error`,
             },

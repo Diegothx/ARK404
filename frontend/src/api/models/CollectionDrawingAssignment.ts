@@ -2,10 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Collection = {
-    name: string;
-    description?: (string | null);
-    type?: (string | null);
-    id: number;
+export type CollectionDrawingAssignment = {
+    collection_ids?: (Array<number> | null);
+    drawing_ids?: (Array<number> | null);
 };
 
