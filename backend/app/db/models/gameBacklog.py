@@ -32,6 +32,10 @@ class GameBase(Base):
 
     title: Mapped[str] = mapped_column(String, nullable=False)
 
+    developer: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+
+    publisher: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+
     status: Mapped[GameStatus] = mapped_column(
         SQLEnum(GameStatus),
         default=GameStatus.backlog,

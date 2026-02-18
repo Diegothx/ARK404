@@ -41,6 +41,7 @@ else:
 DRAWING_UPLOAD_DIR = os.getenv("DRAWING_UPLOAD_DIR", "uploads")
 SCREENSHOT_UPLOAD_DIR = os.getenv("SCREENSHOT_UPLOAD_DIR", "uploads")
 
+os.makedirs("/uploads", exist_ok=True)
 os.makedirs(DRAWING_UPLOAD_DIR, exist_ok=True)
 os.makedirs(SCREENSHOT_UPLOAD_DIR, exist_ok=True)
 
