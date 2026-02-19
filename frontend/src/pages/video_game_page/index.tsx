@@ -66,6 +66,8 @@ export function VideoGamePage({
       if (selectedGame != null && selectedGame.collection_id != null) {
         const drawings = await DrawingsService.getDrawingsByCollectionDrawingsCollectionsCollectionIdGet(selectedGame.collection_id);
         setCurrentGameDrawings(drawings);
+      } else{
+        setCurrentGameDrawings([]);
       }
     }
     fetchDrawings();
@@ -147,7 +149,7 @@ export function VideoGamePage({
                   </div>
                 ))}
               </div>
-              {selectedGame.notes != undefined && (
+              {selectedGame.notes!=null && selectedGame.notes.length > 0 && (
                 <div style={{ margin: "20px" }}>
                   <h3 style={{ textAlign: "center" }}>-- Notas --</h3>
                   <div
