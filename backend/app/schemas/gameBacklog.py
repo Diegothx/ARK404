@@ -22,7 +22,7 @@ class GameCreate(BaseModel):
     start_date: Optional[date] = None
     finish_date: Optional[date] = None
     developer: Optional[str] = None
-    prublisher: Optional[str] = None
+    publisher: Optional[str] = None
     collection_id: Optional[int] = None  # collection_id for association
 
 class GameUpdate(BaseModel):
@@ -38,7 +38,7 @@ class GameUpdate(BaseModel):
     start_date: Optional[date] = None
     finish_date: Optional[date] = None
     developer: Optional[str] = None
-    prublisher: Optional[str] = None
+    publisher: Optional[str] = None
     collection_id: Optional[int] = None  # collection_id for association
 
 

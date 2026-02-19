@@ -1,4 +1,5 @@
 from fastapi import APIRouter,  Depends, HTTPException 
+from sqlalchemy.engine import create
 from sqlalchemy.orm import Session 
 from app.db.models import GameBase, GameNote  # SQLAlchemy model matching DB schema
 from app.db.session import get_db
@@ -6,35 +7,39 @@ from app.dependencies.admin_required import admin_required
 from app.schemas.gameBacklog import GameCreate, GameUpdate, GameResponse
  
 router = APIRouter(prefix="/games",tags=["Admin"])
-@router.post("/", response_model=GameResponse)
+@router.post("/", response_model=list[GameResponse])
 def create_game(
-    game: GameCreate, 
+    games: list[GameCreate], 
     db: Session = Depends(get_db),
     admin = Depends(admin_required)
 ):
-    # Check if a game with the same title already exists
-    existing_game = (
-        db.query(GameBase)
-        .filter(GameBase.title.ilike(game.title))  # case-insensitive match
-        .first()
-    )
-
-    if existing_game:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Game '{game.title}' already exists in your backlog."
+    created_games = []
+    for game in games: 
+        # Check if a game with the same title already exists
+        existing_game = (
+            db.query(GameBase)
+            .filter(GameBase.title.ilike(game.title))  # case-insensitive match
+            .first()
         )
-    data = game.model_dump()
-    notes_data = data.pop("notes", [])
-    
-    db_game = GameBase(**data)
+        if existing_game:
+            print(f"Game '{game.title}' already exists. Skipping creation.")
+            continue
+        data = game.model_dump()
+        notes_data = data.pop("notes", [])
+        db_game = GameBase(**data)
+        
+        db.add(db_game)
+        db.commit()
+        db.refresh(db_game)
 
-    for note in notes_data:
-        db_game.notes.append(GameNote(**note))
-    db.add(db_game)
-    db.commit()
-    db.refresh(db_game)
-    return db_game
+        if notes_data:
+            for note in notes_data:
+                db_note = GameNote(**note)
+                db_note.game_id = db_game.id  # Set the game_id explicitly
+                db.add(db_note)
+            db.commit()
+        created_games.append(db_game)
+    return created_games
 
 @router.put("/{game_id}", response_model=GameResponse)
 def update_game(
