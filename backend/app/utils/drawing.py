@@ -39,3 +39,13 @@ def assign_drawing_to_collections(
         db.add(assoc)
 
     db.commit()
+
+def create_collection_for_game(
+    db: Session, 
+    videoGameName: str,
+):
+    collection = Collection(name=videoGameName, description=f"Mis Dibujos relacionados con {videoGameName}", type="VideoGame")
+    db.add(collection)
+    db.commit()
+    db.refresh(collection)
+    return collection

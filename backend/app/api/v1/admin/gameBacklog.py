@@ -1,9 +1,10 @@
 from fastapi import APIRouter,  Depends, HTTPException  
 from sqlalchemy.orm import Session 
-from app.db.models import GameBase, GameNote  # SQLAlchemy model matching DB schema
+from app.db.models import GameBase, GameNote, Collection  # SQLAlchemy model matching DB schema
 from app.db.session import get_db
 from app.dependencies.admin_required import admin_required
 from app.schemas.gameBacklog import GameCreate, GameUpdate, GameResponse,GameNoteSchema
+from app.utils.drawing import create_collection_for_game
  
 router = APIRouter(prefix="/games",tags=["Admin"])
 @router.post("/", response_model=list[GameResponse])
@@ -14,31 +15,52 @@ def create_game(
 ):
     created_games = []
     for game in games: 
-        # Check if a game with the same title already exists
-        existing_game = (
-            db.query(GameBase)
-            .filter(GameBase.title.ilike(game.title))  # case-insensitive match
-            .first()
-        )
+        existing_game = db.query(GameBase).filter(GameBase.title.ilike(game.title)).first()
         if existing_game:
             print(f"Game '{game.title}' already exists. Skipping creation.")
             continue
+
         data = game.model_dump()
         notes_data = data.pop("notes", [])
         db_game = GameBase(**data)
-        
+
+        # Optionally create a collection
+        if getattr(game, "create_drawing_collection", False):
+            collection = create_collection_for_game(db, game.title)
+            db_game.collection_id = collection.id
+
         db.add(db_game)
         db.commit()
         db.refresh(db_game)
 
+        # Add notes if provided
+        for note in notes_data:
+            db_note = GameNote(**note, game_id=db_game.id)
+            db.add(db_note)
         if notes_data:
-            for note in notes_data:
-                db_note = GameNote(**note)
-                db_note.game_id = db_game.id  # Set the game_id explicitly
-                db.add(db_note)
             db.commit()
+
         created_games.append(db_game)
+
     return created_games
+
+@router.post('/{game_id}/create_collection')
+def create_collection_for_game_route(
+    game_id: int,
+    db: Session = Depends(get_db),
+    admin = Depends(admin_required)
+):
+    game = db.query(GameBase).filter(GameBase.id == game_id).first()
+    if not game:
+        raise HTTPException(status_code=404, detail="Game not found")
+    
+    if game.collection_id:
+        raise HTTPException(status_code=400, detail="Collection already exists for this game")
+
+    collection = create_collection_for_game(db, game.title)
+    game.collection_id = collection.id
+    db.commit()
+    return {"message": "Collection created and linked to game", "collection_id": collection.id}
 
 @router.post('/{game_id}/notes', response_model=list[GameNoteSchema])
 def add_notes_to_game(

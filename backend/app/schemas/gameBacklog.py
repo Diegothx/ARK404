@@ -17,7 +17,7 @@ class GameBase(BaseModel):
     finish_date: Optional[date] = None
     developer: Optional[str] = None
     publisher: Optional[str] = None
-    collection_id: Optional[int] = None  
+    collection_id: Optional[int] = None
 
 class GameNoteSchema(BaseModel):
     content: str = Field(..., max_length=1000)
@@ -26,6 +26,7 @@ class GameNoteSchema(BaseModel):
 
 class GameCreate(GameBase): 
     notes: Optional[List[str]] = None 
+    create_drawing_collection: Optional[bool] = False  # New field to indicate if a drawing collection should be created
 
 class GameUpdate(BaseModel):
     title: Optional[str] = None

@@ -9,6 +9,7 @@ from uuid import uuid4
 import shutil
 import os
 from datetime import datetime
+from app.db.models.drawings import Collection
 
 router = APIRouter(
     prefix="/drawings",
@@ -88,8 +89,7 @@ def create_collection(
     type: str = Form(None),  # sketchbook, franchise, challenge, year, project
     db: Session = Depends(get_db),
     admin = Depends(admin_required)
-):
-    from app.db.models.drawings import Collection
+): 
     collection = Collection(name=name, description=description, type=type)
     db.add(collection)
     db.commit()
