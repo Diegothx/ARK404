@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime 
  
 from app.db.models.gameBacklog import GameStatus, GamePriority
 from pydantic import BaseModel,   Field
@@ -12,6 +12,7 @@ class GameNoteSchema(BaseModel):
 
 class GameCreate(BaseModel):
     title: str = Field(..., max_length=200)
+    link: Optional[str] = Field(None, max_length=500)
     status: GameStatus = GameStatus.backlog
     platform: Optional[List[str]] = None
     genre: Optional[List[str]] = None
@@ -27,6 +28,7 @@ class GameCreate(BaseModel):
 
 class GameUpdate(BaseModel):
     title: Optional[str] = None
+    link: Optional[str] = None
     status: Optional[GameStatus] = None
     platform: Optional[List[str]] = None
     genre: Optional[List[str]] = None
