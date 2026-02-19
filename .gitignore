@@ -14,3 +14,5 @@ frontend/build/
 .venv/
 .vscode/
 dist/
+
+legacydata/
