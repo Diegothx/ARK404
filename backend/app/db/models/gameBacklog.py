@@ -14,17 +14,14 @@ class GamePriority(str, Enum):
 
 
 class GameStatus(str, Enum):
-    wishlist = "wishlist"
-    backlog = "backlog"
-    installed = "installed"
-    next_up = "next_up"
-    playing = "playing"
-    on_hold = "on_hold"
-    finished_main = "finished_main"
+    wishlist = "wishlist"        # want to buy/play
+    backlog = "backlog"          # owned but no immediate plan
+    playing = "playing"          # actively playing
+    casual = "casual"            # occasional / social play
+    on_hold = "on_hold"          # paused mid-progress
+    finished_main = "finished_main"        # completed main experience
     finished_100 = "finished_100"
-    finished_dlc = "finished_dlc"
     dropped = "dropped"
-    soft_dropped = "soft_dropped"
 
 
 class GameBase(Base):
