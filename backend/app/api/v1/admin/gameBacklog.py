@@ -1,10 +1,9 @@
-from fastapi import APIRouter,  Depends, HTTPException 
-from sqlalchemy.engine import create
+from fastapi import APIRouter,  Depends, HTTPException  
 from sqlalchemy.orm import Session 
 from app.db.models import GameBase, GameNote  # SQLAlchemy model matching DB schema
 from app.db.session import get_db
 from app.dependencies.admin_required import admin_required
-from app.schemas.gameBacklog import GameCreate, GameUpdate, GameResponse
+from app.schemas.gameBacklog import GameCreate, GameUpdate, GameResponse,GameNoteSchema
  
 router = APIRouter(prefix="/games",tags=["Admin"])
 @router.post("/", response_model=list[GameResponse])
@@ -40,6 +39,26 @@ def create_game(
             db.commit()
         created_games.append(db_game)
     return created_games
+
+@router.post('/{game_id}/notes', response_model=list[GameNoteSchema])
+def add_notes_to_game(
+    game_id: int,
+    notes: list[str],
+    db: Session = Depends(get_db),
+    admin = Depends(admin_required)
+):
+    db_game = db.query(GameBase).filter(GameBase.id == game_id).first()
+    if not db_game:
+        raise HTTPException(status_code=404, detail="Game not found")
+    
+    created_notes = []
+    for note in notes:
+        db_note = GameNote(content=note, game_id=game_id)
+        db.add(db_note)
+        created_notes.append(db_note)
+    
+    db.commit()
+    return created_notes
 
 @router.put("/{game_id}", response_model=GameResponse)
 def update_game(
