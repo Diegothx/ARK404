@@ -28,12 +28,16 @@ jobs:
 
     - name: Build
       run: npm run build
-      env:
+      env: 
         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
         VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
 
-    - name: Deploy
-      run: npm run deploy
-      env:
-        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-        VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v7
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Token automático de Actions
+        publish_dir: ./dist  # Carpeta de build de Vite
+        publish_branch: gh-pages  # Rama de destino
+        user_name: "GitHub Action"
+        user_email: "action@github.com"
