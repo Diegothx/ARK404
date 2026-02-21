@@ -5,6 +5,9 @@ on:
     branches:
       - main  # triggers only when pushing to main
 
+permissions:
+  contents: write
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -36,8 +39,9 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}  # Token automático de Actions
-        publish_dir: ./dist  # Carpeta de build de Vite
-        publish_branch: gh-pages  # Rama de destino
+        github_token: ${{ secrets.GITHUB_TOKEN }}  
+        publish_dir: ./dist  
+        exclude: ".*" 
+        publish_branch: gh-pages 
         user_name: "GitHub Action"
         user_email: "action@github.com"
