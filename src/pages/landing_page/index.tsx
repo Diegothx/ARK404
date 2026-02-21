@@ -63,7 +63,7 @@ export function LandingPage({
           color: "#ff01ff",
           alignContent: "center",
           textAlign: "center",
-          backgroundColor: "rgba(53, 6, 59, 0.3)",
+          backgroundColor: "rgba(53, 6, 59, 0.45)",
           display:'flex',
           flexDirection:'column', 
         }}
