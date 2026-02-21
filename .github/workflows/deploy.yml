@@ -34,7 +34,7 @@ jobs:
 
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v7
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}  # Token automático de Actions
         publish_dir: ./dist  # Carpeta de build de Vite
