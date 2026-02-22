@@ -70,5 +70,41 @@
         "collections": [
             1
         ]
+    },
+    {
+        "id": 7,
+        "title": "Helltaker OC",
+        "description": "",
+        "file_url": "Videogames/Helltaker/HelltakerOC.jpg",
+        "thumbnail_url": null,
+        "drawing_date": "2020-07-24",
+        "is_favorite": false,
+        "collections": [
+            2
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Lucifer -- Helltaker",
+        "description": "",
+        "file_url": "Videogames/Helltaker/LuciHelltaker.png",
+        "thumbnail_url": null,
+        "drawing_date": "2020-07-19",
+        "is_favorite": true,
+        "collections": [
+            2
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Justice -- Helltaker",
+        "description": "",
+        "file_url": "Videogames/Helltaker/Justice.jpg",
+        "thumbnail_url": null,
+        "drawing_date": null,
+        "is_favorite": false,
+        "collections": [
+            2
+        ]
     }
 ]
