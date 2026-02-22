@@ -69,5 +69,143 @@
                 "created_at": "2026-02-19"
             }
         ]
+    },
+    {
+        "id": 3,
+        "title": "Elden Ring",
+        "developer": "FromSoftware",
+        "publisher": "Bandai Namco",
+        "link": "https://es.bandainamcoent.eu/elden-ring/elden-ring",
+        "status": "backlog",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "RPG",
+            "Action"
+        ],
+        "release_year": 2022,
+        "priority": "medium",
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
+    },
+    {
+        "id": 4,
+        "title": "Hollow Knight",
+        "developer": "Team Cherry",
+        "publisher": "Team Cherry",
+        "link": "https://www.hollowknight.com/",
+        "status": "finished_main",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Metroidvania",
+            "Action"
+        ],
+        "release_year": 2017,
+        "rating": 10,
+        "priority": null,
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "Definitivamente de mis juegos favoritos, de los pocos juegos modernos que dejan al jugador perderse sin preocuparse de que el jugador pueda saltar inmediatamente a otro titulo.",
+                "created_at": "2026-02-21"
+            },
+            {
+                "content": "El arte, el diseño, la música, el diseño del mundo, toda está superbién hecho, y team cherry logra mantenerse como  un  equipo pequeño y sin inversores que logra básicamente que puedan hacer  fiel a su idea y visión de los juegos, me gustaría que la industria fomentara más este tipo de desarrollo en vez de ser tan  castigadora con la mayoría de la gente que toma estos riesgos. Al menos uno puede imaginar una industria más sana produciendo juegos  acordes a medios de producción más enfocada en la creatividad y pasión humana",
+                "created_at": "2026-02-21"
+            },
+            {
+                "content": "Me cuesta elegir un Boss  favorito, el ritmo de las mantis lord (en especial en el panteón), el aura del Nightmare Grimm, todo el lore y relación personal ( en una historia  donde tu personaje canónicamente no  siente nada) con el Hollow Knight (y la forma en que aparece el título diciéndote como, this is it, this the real showdown) la presentación del Radiance junto a su música y la subida  al golpe  final mientras todas las sombras suben junto a ti, incluyendo el hollow knight para ayudar a su hermano a dar el golpe de gracia. Como mención especial el final del white palace donde ante una de las partes  más difícil del juego el premio no es  una mejora, plot  twist, o cinemática larga, solo percibir un momento personal entre padre e hijo, un momento tan mundano pero que en contexto desencadeno  todo el resultado posterior con  elHollow Knight  fallando en ser vacío.",
+                "created_at": "2026-02-21"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "MADiSON",
+        "developer": "Bloodious Games",
+        "publisher": "Bloodious Games",
+        "link": "https://madisongame.com/",
+        "status": "backlog",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Horror",
+            "Survival Horror",
+            "Psychological Horror"
+        ],
+        "release_year": 2022,
+        "priority": "high",
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
+    },
+    {
+        "id": 6,
+        "title": "The Mortuary Assistant",
+        "developer": "DarkStone Digital",
+        "publisher": "DreadXP",
+        "link": "https://store.steampowered.com/app/1222140/The_Mortuary_Assistant/",
+        "status": "backlog",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Horror",
+            "Mystery"
+        ],
+        "release_year": 2022,
+        "priority": "high",
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
+    },
+    {
+        "id": 7,
+        "title": "Helltaker",
+        "developer": "Vanripper",
+        "publisher": "Vanripper",
+        "link": "https://vanripper.itch.io/helltaker",
+        "status": "finished_100",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Puzzle",
+            "Adventure"
+        ],
+        "release_year": 2020,
+        "rating": 10,
+        "priority": null,
+        "start_date": "2020-07-10",
+        "finish_date": "2020-07-10",
+        "collection_id": 2,
+        "notes": [
+            {
+                "content": "Justice best girl",
+                "created_at": "2026-02-22"
+            },
+            {
+                "content": "Puta que buena musica",
+                "created_at": "2026-02-22"
+            },
+            {
+                "content": "En su momento quise hacer fanart de todas las kbras pero justo  me dio su bloquo creativo, eventualmente lo hare, hay fe. Me gusta harto el  diseño so es una manera de aprenderlo",
+                "created_at": "2026-02-22"
+            },
+            {
+                "content": "Justice best girl pero Malina es best waifu definitivamente",
+                "created_at": "2026-02-22"
+            }
+        ]
     }
 ]

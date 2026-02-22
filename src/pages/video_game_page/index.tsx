@@ -25,38 +25,33 @@ const colorByStatus = (
       return "#000000";
   }
 }; 
-const statusOrder: Record<GameStatus, number> = { 
-  finished_100: 0, 
-  finished_main: 1,
-  playing: 2,
-  on_hold: 3,
-  casual: 4, 
-  backlog: 5,
-  wishlist: 6, 
-  dropped: 7,
-}; 
+const statusTitles: {[status in GameStatus]: string} = {
+  "playing": "Jugando",
+  "finished_main": "Terminado (Main)",
+  "finished_100": "Terminado (100%)",
+  "on_hold": "En espera",
+  "casual": "Casual",
+  "backlog": "Pendiente",
+  "wishlist": "Deseado",
+  "dropped": "Abandonado"
+}
 export function VideoGamePage({
   setCurrentTab
 }: {
   setCurrentTab: Dispatch<SetStateAction<Tabs>>;
 }) { 
   const [currentGameId, setCurrentGameId] = useState<number | null>(null);
-  const [gameList, setGameList] = useState<Game[]>([]);
+  const [gameList, setGameList] = useState<{[status: string]: Game[]}>({});
   const [currentGameDrawings, setCurrentGameDrawings] = useState<Drawing[]>([])
 
-  const selectedGame = gameList.find((g) => g.id === currentGameId);
+  const selectedGame = Object.values(gameList).flat().find((g) => g.id === currentGameId);
   
   useEffect(() => {
-    async function fetchGames() {
-      const games = await GameService.getAllGames();
-      games.sort((a, b) => {
-        const statusA = a.status || GameStatus.backlog;
-        const statusB = b.status || GameStatus.backlog;
-        return statusOrder[statusA] - statusOrder[statusB];
-      });
+    async function fetchGamesByStatus() {
+      const games = await GameService.getAllGamesByStatus(); 
       setGameList(games);
     }
-    fetchGames();
+    fetchGamesByStatus();
   }, []);  
  
 
@@ -101,18 +96,23 @@ export function VideoGamePage({
       > 
         <div style={{ overflowY: "auto", width: "40%", zIndex: "1", 
            }}>
-            {gameList.map((g) => (
-            <h2
-              key={g.title}
-              onClick={() => setCurrentGameId(g.id)}
-              style={{
-                color: colorByStatus(g.status || "backlog" as GameStatus),
-                cursor: "pointer",
-              }}
-            >
-              {currentGameId === g.id && ">"} {g.title}
+            {Object.entries(gameList).map(([status, games]) => (
+              <div key={status}>
+                <h2 style={{ color: colorByStatus(status as GameStatus) }}>----- {statusTitles[status as GameStatus]} -----</h2>
+                {games.map((g) => (
+                  <h2
+                    key={g.title}
+                    onClick={() => setCurrentGameId(g.id)}
+                    style={{
+                      color: colorByStatus(g.status || "backlog" as GameStatus),
+                      cursor: "pointer",
+                    }}
+                  >
+                    {currentGameId === g.id && ">"} {g.title}
             </h2>
           ))}
+          </div>
+        ))}
         </div>
         <div
           style={{
@@ -127,9 +127,22 @@ export function VideoGamePage({
         > {selectedGame && (
             <>
               <h1 style={{ textAlign: "center" }}>
-                {" "}
+             {selectedGame.link ? (
+              <a
+                href={selectedGame.link}
+                target="_blank"
+                rel="noopener noreferrer"
+            className="game-link" 
+                 
+              >
+                &gt; {selectedGame.title} <span style={{fontSize:"10px", position:'absolute', right:'18px', top: '8px'}}>↗</span> &lt;
+              </a>
+            ) : (
+              <span style={{ opacity: 0.7 }}>
                 &gt; {selectedGame.title} &lt;
-              </h1>
+              </span>
+            )}
+            </h1>
               <h3 style={{ textAlign: "center" }}>-- Tags --</h3>
               <div
                 style={{ display: "flex", gap: "20px", padding: "0px 20px" }}

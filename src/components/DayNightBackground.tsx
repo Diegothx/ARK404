@@ -16,7 +16,7 @@ export default function DayNightBackground({backgroundUrl}: {backgroundUrl: stri
 
       const cycleProgress = (startProgress + (elapsed / cycleDuration)) % 1;
 
-      const newOpacity = 0.2 + 0.8 * ((Math.sin(cycleProgress * 2 * Math.PI) + 1) / 2);
+      const newOpacity = 0.2 + 0.6 * ((Math.sin(cycleProgress * 2 * Math.PI) + 1) / 2);
 
       setOpacity(newOpacity);
 

@@ -61,6 +61,7 @@ export function DrawingPage({
             <h1 
               style={{display:'flex', justifyContent:"center"}}
             >{year}</h1>
+            <div style={{justifyContent:'center',marginBottom:'10px', display:'flex'}}>-----------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
             <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "20px" }}>
             {drawingsPerYear[year] && drawingsPerYear[year]
             .map((drawing) => {
