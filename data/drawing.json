@@ -14,7 +14,7 @@
     {
         "id": 2,
         "title": "Omori Self Insert",
-        "description": "Un autoretrato que hice hace años al   estilo omori, era parte de aprender a hacer el estilo.",
+        "description": "Un autoretrato que hice hace años al estilo omori, era parte de aprender a hacer el estilo.",
         "file_url": "Videogames/Omori/OmoriSelfIncert.png",
         "thumbnail_url": null,
         "drawing_date": null,
@@ -26,7 +26,7 @@
     {
         "id": 3,
         "title": "Omori Desert Room",
-        "description": "",
+        "description": "Me propuse en su momento hacer todas las habitaciones del black space, esta es la primera que hice, nunca termine todas pero fue  un ejercico divertido, el tomar cada room y tratar de captar lo mas importante o la 'escencia' de cada una fue un desafio de diseño intereante. No se si se logro pero aprendi bastante",
         "file_url": "Videogames/Omori/OmoriDessert.png",
         "thumbnail_url": null,
         "drawing_date": "2021-07-18",
@@ -62,7 +62,7 @@
     {
         "id": 6,
         "title": "Omori Mewo Room",
-        "description": "",
+        "description": "Este dibujo me gusto mucho como resulto, creo que capta bien la presion de  entender lo que se espera de ti de manera implicita. Ademas, siento que el pintado quedo con colore agradable  de ver, se ven completos  jsjs",
         "file_url": "Videogames/Omori/OmoriMewo.png",
         "thumbnail_url": null,
         "drawing_date": "2021-07-14",
@@ -101,7 +101,7 @@
         "description": "",
         "file_url": "Videogames/Helltaker/Justice.jpg",
         "thumbnail_url": null,
-        "drawing_date": null,
+        "drawing_date": "2020-07-15",
         "is_favorite": false,
         "collections": [
             2
