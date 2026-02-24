@@ -21,6 +21,8 @@ const colorByStatus = (
  
     case "backlog":
       return "#f1f1f1";
+    case "casual":
+      return "#ff99cc";
     default:
       return "#000000";
   }
@@ -35,6 +37,18 @@ const statusTitles: {[status in GameStatus]: string} = {
   "wishlist": "Deseado",
   "dropped": "Abandonado"
 }
+
+const statusOrder: GameStatus[] = [
+  GameStatus.finished_100,
+  GameStatus.finished_main,
+  GameStatus.playing,
+  GameStatus.on_hold,
+  GameStatus.casual,
+  GameStatus.backlog,
+  GameStatus.wishlist,
+  GameStatus.dropped
+];
+
 export function VideoGamePage({
   setCurrentTab
 }: {
@@ -96,23 +110,33 @@ export function VideoGamePage({
       > 
         <div style={{ overflowY: "auto", width: "40%", zIndex: "1", 
            }}>
-            {Object.entries(gameList).map(([status, games]) => (
-              <div key={status}>
-                <h2 style={{ color: colorByStatus(status as GameStatus) }}>----- {statusTitles[status as GameStatus]} -----</h2>
-                {games.map((g) => (
-                  <h2
-                    key={g.title}
-                    onClick={() => setCurrentGameId(g.id)}
-                    style={{
-                      color: colorByStatus(g.status || "backlog" as GameStatus),
-                      cursor: "pointer",
-                    }}
-                  >
-                    {currentGameId === g.id && ">"} {g.title}
-            </h2>
-          ))}
-          </div>
-        ))}
+            {statusOrder
+            .filter(status => gameList[status]?.length > 0)
+            .map((status) => {
+              const games = gameList[status];
+              if (!games) return null;
+
+              return (
+                <div key={status}>
+                  <h2 style={{ color: colorByStatus(status) }}>
+                    ----- {statusTitles[status]} -----
+                  </h2>
+
+                  {games.map((g) => (
+                    <h2
+                      key={g.title}
+                      onClick={() => setCurrentGameId(g.id)}
+                      style={{
+                        color: colorByStatus(g.status || "backlog"),
+                        cursor: "pointer",
+                      }}
+                    >
+                      {currentGameId === g.id && ">"} {g.title}
+                    </h2>
+                  ))}
+                </div>
+              );
+            })}
         </div>
         <div
           style={{

@@ -56,6 +56,7 @@ export function LandingPage({
           position: "relative",
           width: "1500px",
           borderRadius: "20px",
+          minHeight:'550px',
           height: "90%",  
           border: "5px double purple",
           margin: "auto",

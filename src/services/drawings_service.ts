@@ -14,8 +14,7 @@ export default class DrawingsService {
         }
         drawingsByYear[year].push(drawing);
       }
-    });
-    console.log(drawingsByYear)
+    }); 
     return drawingsByYear;
   }
   static async getDrawingsByGameId(gameId: number): Promise<Drawing[]> {
