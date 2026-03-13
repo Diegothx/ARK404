@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { LandingPage } from "./pages/landing_page";
 import {DrawingPage} from "./pages/drawing_page";
 import {VideoGamePage} from "./pages/video_game_page"; 
+import {WebGamesPage} from "./pages/web_games_page";
 export enum Tabs {
   LANDING = "landing",
   DRAWING = "drawing",
   VIDEOGAME = "videogame",
+  WEBGAMES = "webgames",
   //BLOG = "blog",
   //COOKING = "cooking",
   //GARDERING = "gardering",
@@ -48,6 +50,10 @@ export function TabContainer() {
       {currentTab == Tabs.VIDEOGAME &&
       <VideoGamePage setCurrentTab={setCurrentTab}
       />}
+      {
+        currentTab == Tabs.WEBGAMES &&
+        <WebGamesPage setCurrentTab={setCurrentTab}/>
+      }
      {/*  {currentTab == Tabs.BLOG && <BlogPage setCurrentTab={setCurrentTab} />} */}
       {/* {currentTab == Tabs.COOKING && <CookingPage setCurrentTab={setCurrentTab} />} */}
     </div>

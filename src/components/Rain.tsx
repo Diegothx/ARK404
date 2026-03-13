@@ -11,19 +11,19 @@ interface RainProps {
 export function Rain({
   dropCount = 100,
   frontLayerOpacity = 1,
-  backLayerOpacity = 0.5, 
-  backLayerBottom = "60px"
+  backLayerOpacity = 0.5,
+  backLayerBottom = "60px",
 }: RainProps) {
-  const [rainDrops, setRainDrops] = useState<{
-    front: JSX.Element[];
-    back: JSX.Element[];
-  }>({ front: [], back: [] });
+  const [rainDrops, setRainDrops] = useState<{ front: JSX.Element[]; back: JSX.Element[] }>({
+    front: [],
+    back: [],
+  });
+  const [isRaining, setIsRaining] = useState(true);
 
   const makeItRain = () => {
     const increment = 0;
     const drops: JSX.Element[] = [];
     const backDrops: JSX.Element[] = [];
-
     let currentIncrement = increment;
 
     for (let i = 0; i < dropCount; i++) {
@@ -61,9 +61,23 @@ export function Rain({
     setRainDrops({ front: drops, back: backDrops });
   };
 
-  useEffect(() => {
+  const startRain = () => {
+    setIsRaining(true);
     makeItRain();
-  }, [dropCount]);
+  };
+
+  const stopRain = () => {
+    setIsRaining(false);
+    setRainDrops({ front: [], back: [] }); // remove all drops
+  };
+
+  useEffect(() => {
+    if (isRaining) {
+      makeItRain();
+    } else {
+      setRainDrops({ front: [], back: [] });
+    }
+  }, [dropCount, isRaining]);
 
   return (
     <>
@@ -73,12 +87,12 @@ export function Rain({
           left: "0",
           top: "0",
           width: "100%",
-          height: "100%", 
+          height: "100%",
           opacity: frontLayerOpacity,
           overflow: "hidden",
         }}
       >
-        {rainDrops.front.map((drop) => drop)}
+        {rainDrops.front}
       </div>
       <div
         style={{
@@ -87,11 +101,22 @@ export function Rain({
           width: "100%",
           height: "100%",
           bottom: backLayerBottom,
-          opacity: backLayerOpacity, 
+          opacity: backLayerOpacity,
         }}
       >
-        {rainDrops.back.map((drop) => drop)}
+        {rainDrops.back}
       </div>
+
+      {isRaining ?
+        <button onClick={stopRain} style={{ position: "fixed", bottom: 10, left: 10 }}>
+          🌤️🎛️
+        </button>
+        :
+      <button onClick={startRain} style={{ position: "fixed", bottom: 10, left: 10 }}>
+          ☔🎛️
+      </button>
+       }
+      
     </>
   );
 }
