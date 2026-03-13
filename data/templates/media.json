@@ -1,0 +1,13 @@
+{
+    "id": -1,
+    "title": "",
+    "description": "",
+    "media_type": "['serie', 'movie', 'documentary', 'book', 'comic', 'other']",
+    "file_url": "",
+    "thumbnail_url": null,
+    "release_year": null,
+    "is_favorite": false,
+    "collections": [
+        -1
+    ]
+}
