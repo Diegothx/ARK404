@@ -24,6 +24,10 @@
             {
                 "content": "Jugué este juego hace años, es definitivamente una experiencia. La forma en que desenvuelven el plot en la parte final y logran reflejar muy bien cosas como la disociación o el bloqueo mental a través de las mecánicas propias del videojuego (como cuando atacas a Aubrey en el mundo real tras estar disociado en un mundo mental por años) es impresionante. Por mucho tiempo no pude escuchar “Final Duet” sin llorar.",
                 "created_at": "2026-02-20"
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=Zh-IyaLoa6E",
+                "created_at": "2026-03-13"
             }
         ]
     },
@@ -419,6 +423,103 @@
         "notes": [
             {
                 "content": "Sonic... Gracias por hacerme sonreir...",
+                "created_at": "2026-03-13"
+            },
+            {
+                "content": "Como parte de reconfigurar mi relacion con la tech, coloque este juego en un emulador de la 3ds, so suelo andar en la micro jugandolo con audiofonos, welcome back 2010",
+                "created_at": "2026-03-13"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "Slay the princess",
+        "developer": "Black Tabby Games",
+        "publisher": "Black Tabby Games",
+        "link": "https://www.slaytheprincess.com/",
+        "status": "finished_main",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Horror",
+            "Visual Novel",
+            "Psychological Horror"
+        ],
+        "release_year": 2023,
+        "priority": null,
+        "start_date": "2026-01-09",
+        "finish_date": "2026-01-10",
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "https://www.youtube.com/watch?v=b6T5ZQMdzqY",
+                "created_at": "2026-03-13"
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=QXh5rG1hQCo",
+                "created_at": "2026-03-13"
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=WIPzlyusMzs Que hermosa animacion con su cancion, amar es ser vulnerable, ser vulnerable es ser dañado, ser dañado es dañar... We can't really help who we are...",
+                "created_at": "2026-03-13"
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=U2kE86wQGZE",
+                "created_at": "2026-03-13"
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=rP5RevzxwPo",
+                "created_at": "2026-03-13"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "title": "factorio",
+        "developer": "Wube Software",
+        "publisher": "Wube Software",
+        "link": "https://factorio.com/",
+        "status": "casual",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Strategy",
+            "Automation",
+            "Base Building",
+            "Simulation",
+            "Crafting"
+        ],
+        "release_year": 2020,
+        "priority": null,
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
+    },
+    {
+        "id": 19,
+        "title": "Deltarune",
+        "developer": "Toby Fox",
+        "publisher": "Toby Fox",
+        "link": "https://www.deltarune.com/",
+        "status": "backlog",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "RPG",
+            "Adventure"
+        ],
+        "release_year": 2018,
+        "priority": null,
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "https://www.youtube.com/watch?v=jItk7Swc680",
                 "created_at": "2026-03-13"
             }
         ]
