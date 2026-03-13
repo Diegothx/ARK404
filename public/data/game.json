@@ -361,5 +361,66 @@
         "finish_date": null,
         "collection_id": -1,
         "notes": []
+    },
+    {
+        "id": 15,
+        "title": "DARQ",
+        "developer": "Unfold Games",
+        "publisher": "Unfold Games",
+        "link": "https://www.feardemic-games.com/darq",
+        "status": "finished_main",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Horror",
+            "Puzzle",
+            "Adventure"
+        ],
+        "release_year": 2019,
+        "priority": null,
+        "start_date": "2025-12-29",
+        "finish_date": "2025-12-29",
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "Si te gustan los juegos de puzles con un toque de terror e historias que dejan bastante a la interpretación, te lo recomiendo. Eso sí, personalmente no pude conectar del todo con este juego.\n\nEl terror tiene tres escenas que encuentro que lo logran bastante bien. Suele generar una sensación constante de ser perseguido y de que no se está en una zona segura, a excepción de la sala entre niveles. Esto lo aprovecha para hacer que el espacio seguro se convierta, en la última transición, en una escena donde te persiguen, rompiendo la sensación de zona segura. Logra bien ese tropo, pero siento que, en todo lo que hace bien, se me ocurren otros ejemplos que lo logran mejor. Así que quizá queda como un buen juego, pero que no está en el top de la lista que recomendaría.\n\nMi escena de terror favorita es una donde tienes que resolver un puzzle mientras la cámara gira, mostrándote un pasillo atrás de donde está tu personaje. Mientras tanto, una señora en silla de ruedas se va acercando a ti, creando tensión por resolver el puzzle antes de ser atrapado. Al ver el peligro acercándose es difícil avanzar en el puzzle porque la cámara no lo muestra; y cuando puedes ver el puzzle, la cámara no muestra qué tan cerca está el peligro. Esto logra una escena donde siempre tienes información parcial: o sabes qué tan cerca está el peligro, o tienes visión del puzzle que debes resolver.\n\nRecomendaría Inside, Limbo o The Living Nightmare mucho antes que este. Ahora, si ya jugaste esos y quieres un juego correcto y parecido, vale la pena.",
+                "created_at": "2026-03-10"
+            },
+            {
+                "content": "En definitiva, siento que le falta sentirse más destacable. Se siente como si hubieran hecho un estudio del género y hubieran armado algo en base a acercarse a la vibra, pero no sé si llega a mucho más. Por la parte de los puzles, es corto; encuentro que están bien y aprovechan bien la mecánica. Lo único es que en el replay, cuando uno intenta encontrar los coleccionables, la parte de terror te hace ir lento en algunas partes, y cuando se va la sensación de terror, esto se siente únicamente tedioso.",
+                "created_at": "2026-03-10"
+            },
+            {
+                "content": "Como los juegos del género, la historia invita a interpretar y da a entender partes, como que te encuentras en un sueño escapando de un ambiente que busca agarrarte y atraparte aquí (?), llegando al desenlace donde escapas y se llega a escuchar un llanto de bebé, así que ¿es toda la historia una clase de parto? Como que si la respuesta es sí, quedaría como 'ah, ok'. Me hace falta un poco esa reinterpretación que se sienta que profundiza la historia. Por lo que jugué, siento que cualquier explicación de la historia que me digan suena creíble, lo cual lo hace un poco menos special. Como que se rompe la sensación de que es una fantasía pasajera y se siente más como un juego armado pensando en que luego la gente buscará en Google y verá videos explicando la historia.",
+                "created_at": "2026-03-10"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Sonic the hedgehog",
+        "developer": "Sonic Team",
+        "publisher": "Sega",
+        "link": "https://www.sega.com/sonic-the-hedgehog",
+        "status": "playing",
+        "platform": [
+            "3DS"
+        ],
+        "genre": [
+            "Platformer",
+            "Adventure"
+        ],
+        "release_year": 1991,
+        "priority": null,
+        "start_date": null,
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "Sonic... Gracias por hacerme sonreir...",
+                "created_at": "2026-03-13"
+            }
+        ]
     }
 ]
