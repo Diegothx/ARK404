@@ -6,12 +6,14 @@ export function ImageWithTooltip({
   rotation,
   altText,
   idx,
+  onClick,
 }: {
   width?: string;
   drawURL: string;
   rotation: number;
   altText: string;
   idx: number;
+  onClick?: () => void;
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
  
@@ -21,6 +23,7 @@ export function ImageWithTooltip({
           width: `${width}`, display: "inline-block" }}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
+      onClick={onClick}
     >
       <img
         key={idx}

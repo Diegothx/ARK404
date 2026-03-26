@@ -1,4 +1,4 @@
-import { useState, JSX, useEffect, Dispatch, SetStateAction } from "react";
+import { useState,  useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs } from "../../TabContainer";
 import { Rain } from "../../components/Rain";  
 import { ImageWithTooltip } from "../../components/ImageWithTooltip";
@@ -7,6 +7,7 @@ import GameService from "../../services/game_service";
 import DrawingsService from "../../services/drawings_service"; 
 import { Drawing } from "../../types/drawing";
 import { Game, GameStatus } from "../../types/game";
+import drawZoomedImage from "../../components/drawZoomedImage";
 
 const colorByStatus = (
   status: GameStatus,
@@ -57,6 +58,7 @@ export function VideoGamePage({
   const [currentGameId, setCurrentGameId] = useState<number | null>(null);
   const [gameList, setGameList] = useState<{[status: string]: Game[]}>({});
   const [currentGameDrawings, setCurrentGameDrawings] = useState<Drawing[]>([])
+  const [drawingIndex, setDrawingIndex] = useState<number | null>(null);
 
   const selectedGame = Object.values(gameList).flat().find((g) => g.id === currentGameId);
   
@@ -81,9 +83,42 @@ export function VideoGamePage({
     fetchDrawings();
   }, [selectedGame]);
 
+  const goNext = () => {
+    if (drawingIndex === null) return;
+    setDrawingIndex((prev) =>
+      prev !== null ? (prev + 1) % currentGameDrawings.length : prev
+    );
+  };
+
+  const goPrev = () => {
+    if (drawingIndex === null) return;
+    setDrawingIndex((prev) =>
+      prev !== null
+        ? (prev - 1 + currentGameDrawings.length) % currentGameDrawings.length
+        : prev
+    );
+  };
+
+  useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (drawingIndex === null) return;
+
+    if (e.key === "ArrowRight") goNext();
+    if (e.key === "ArrowLeft") goPrev();
+    if (e.key === "Escape") setDrawingIndex(null);
+  };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [drawingIndex, currentGameDrawings.length]);
   return (
     <> 
-      <Rain/>
+      <Rain/> 
+      {drawingIndex !== null && 
+      drawZoomedImage({drawing: currentGameDrawings[drawingIndex],
+      close: () => setDrawingIndex(null),
+      goNext,
+      goPrev})}
       <div > 
         <h1
           onClick={() => setCurrentTab(Tabs.LANDING)}
@@ -206,7 +241,7 @@ export function VideoGamePage({
               )}
               {currentGameDrawings.length > 0 && (
                 <div style={{ margin: "20px" }}>
-                  <h3 style={{ textAlign: "center" }}>-- Galeria --</h3>
+                  <h3 style={{ textAlign: "center" }}>-- Art Gallery --</h3>
                   <div
                     style={{
                       display: "grid",
@@ -224,6 +259,7 @@ export function VideoGamePage({
                           drawURL={getDrawingURL(draw.file_url)}
                           rotation={rotation}
                           altText={draw.title || `Drawing ${draw.id}`}
+                          onClick={() => setDrawingIndex(idx)}
                           idx={idx}
                         />
                       );

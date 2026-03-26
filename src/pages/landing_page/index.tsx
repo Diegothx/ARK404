@@ -24,7 +24,6 @@ export function LandingPage({
   useEffect(() => { 
     QuotesService.getRandomQuote()
       .then(response => {
-        console.log(response);
         if (response.content) {
           setQuote(response.content);
         } else {
@@ -32,7 +31,6 @@ export function LandingPage({
         }
       })
       .catch((e) => {
-        console.log(e);
         setQuote("The world is quiet here");
       });
 
