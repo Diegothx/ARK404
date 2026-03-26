@@ -24,10 +24,14 @@
             {
                 "content": "Jugué este juego hace años, es definitivamente una experiencia. La forma en que desenvuelven el plot en la parte final y logran reflejar muy bien cosas como la disociación o el bloqueo mental a través de las mecánicas propias del videojuego (como cuando atacas a Aubrey en el mundo real tras estar disociado en un mundo mental por años) es impresionante. Por mucho tiempo no pude escuchar “Final Duet” sin llorar.",
                 "created_at": "2026-02-20"
-            },
+            }
+        ],
+        "relatedLinks": [
             {
-                "content": "https://www.youtube.com/watch?v=Zh-IyaLoa6E",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "OMORI | Therefore You and Me",
+                "url": "https://www.youtube.com/watch?v=Zh-IyaLoa6E",
+                "comments": []
             }
         ]
     },
@@ -451,26 +455,39 @@
         "start_date": "2026-01-09",
         "finish_date": "2026-01-10",
         "collection_id": -1,
-        "notes": [
+        "notes": [],
+        "relatedLinks": [
             {
-                "content": "https://www.youtube.com/watch?v=b6T5ZQMdzqY",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "Home | Slay the Princess | Animation",
+                "url": "https://www.youtube.com/watch?v=b6T5ZQMdzqY",
+                "comments": []
             },
             {
-                "content": "https://www.youtube.com/watch?v=QXh5rG1hQCo",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "KITCHEN FORK || SLAY THE PRINCESS AMV",
+                "url": "https://www.youtube.com/watch?v=QXh5rG1hQCo",
+                "comments": []
             },
             {
-                "content": "https://www.youtube.com/watch?v=WIPzlyusMzs Que hermosa animacion con su cancion, amar es ser vulnerable, ser vulnerable es ser dañado, ser dañado es dañar... We can't really help who we are...",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "The Bird Song - Slay the Princess - Animatic (SPOILERS!!)",
+                "url": "https://www.youtube.com/watch?v=WIPzlyusMzs",
+                "comments": [
+                    "Oh yes, el himno del doomed romance. Encuentro muy linda esta cancion, la idea de que amar es ser vulnerable, ser vulnerable es ser dañado, ser dañado es dañar... We can't really help who we are..."
+                ]
             },
             {
-                "content": "https://www.youtube.com/watch?v=U2kE86wQGZE",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "Passion Betrayed | Slay The Princess | Animatic",
+                "url": "https://www.youtube.com/watch?v=U2kE86wQGZE",
+                "comments": []
             },
             {
-                "content": "https://www.youtube.com/watch?v=rP5RevzxwPo",
-                "created_at": "2026-03-13"
+                "type": "original song",
+                "title": "\"Two God\" || Slay The Princess (ORIGINAL SONG/PMV)",
+                "url": "https://www.youtube.com/watch?v=rP5RevzxwPo",
+                "comments": []
             }
         ]
     },
@@ -517,14 +534,19 @@
         "start_date": null,
         "finish_date": null,
         "collection_id": -1,
-        "notes": [
+        "notes": [],
+        "relatedLinks": [
             {
-                "content": "https://www.youtube.com/watch?v=jItk7Swc680",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "stalker's tango // deltarune animatic",
+                "url": "https://www.youtube.com/watch?v=jItk7Swc680",
+                "comments": []
             },
             {
-                "content": "https://www.youtube.com/watch?v=BcBiGkfVxBE",
-                "created_at": "2026-03-13"
+                "type": "animation",
+                "title": "Victory Over Truth || Deltarune Animatic",
+                "url": "https://www.youtube.com/watch?v=BcBiGkfVxBE",
+                "comments": []
             }
         ]
     },
