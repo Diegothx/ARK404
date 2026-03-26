@@ -521,6 +521,81 @@
             {
                 "content": "https://www.youtube.com/watch?v=jItk7Swc680",
                 "created_at": "2026-03-13"
+            },
+            {
+                "content": "https://www.youtube.com/watch?v=BcBiGkfVxBE",
+                "created_at": "2026-03-13"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "title": "Peak",
+        "developer": "Aggro Crab",
+        "publisher": "Aggro Crab",
+        "link": "https://store.steampowered.com/app/3527290/PEAK/",
+        "status": "casual",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Adventure",
+            "Cooperative"
+        ],
+        "release_year": 2025,
+        "priority": null,
+        "start_date": "2026-02-23",
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
+    },
+    {
+        "id": 21,
+        "title": "CrossCode",
+        "developer": "Radical Fish Games",
+        "publisher": "Deck13",
+        "link": "https://www.cross-code.com/en/home",
+        "status": "playing",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Action",
+            "RPG",
+            "Adventure",
+            "Puzzle"
+        ],
+        "release_year": 2018,
+        "rating": null,
+        "priority": null,
+        "start_date": "2024-07-28",
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
+    },
+    {
+        "id": 22,
+        "title": "Monster Hunter 4 Ultimate",
+        "developer": "Capcom",
+        "publisher": "Capcom",
+        "link": "https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-3DS/Monster-Hunter-4-Ultimate-906890.html",
+        "status": "finished_main",
+        "platform": [
+            "Nintendo 3DS"
+        ],
+        "genre": [
+            "Action",
+            "RPG"
+        ],
+        "release_year": 2015,
+        "priority": null,
+        "start_date": "2015",
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "Para mi el monster hunter definitivo, unas cantidad de horas que le he puesto a este juego. Entre los diseños de los mounstruos, las armas, la variedad de combate segun estilos, y el general feeling de estar enfrentando a bestias gigantes mucho mas poderosas que uno hace que sea mi saga por gameplay favorita. Boss Rush.",
+                "created_at": "2026-03-26"
             }
         ]
     }
