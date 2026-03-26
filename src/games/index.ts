@@ -1,13 +1,13 @@
-import ColorGuessGame from "./colorGuess";
+import Bricks from "./Bricks";
 
-export const games = [
+export const games = [ 
   {
-    id: "color-guess",
-    name: "Color Guess",
-    description: "Just a random color generator to identify it on an rgb format",
+    id: "bricks",
+    name: "Bricks",
+    description: "Like pong",
     thumbnail: null,
     isAvailabe: true,
-    component: ColorGuessGame
+    component: Bricks
   },
   {
     id: "test01",
@@ -15,15 +15,7 @@ export const games = [
     description: "This is a test game that does nothing",
     thumbnail: null,
     isAvailabe: false,
-    component: ColorGuessGame
-  },
-  {
-    id: "test02",
-    name: "Test Game02",
-    description: "This is a test game that does nothing",
-    thumbnail: null,
-    isAvailabe: false,
-    component: ColorGuessGame
+    component: Bricks
   }
 
 ];
