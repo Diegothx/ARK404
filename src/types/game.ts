@@ -30,6 +30,12 @@ class Game {
         "content": string
         "created_at": string
     }[]
+    "relatedLinks": {
+        "type": string
+        "title": string
+        "url": string
+        "comments": string[]
+    }[]
 }
 
 export {Game, GameStatus}

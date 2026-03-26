@@ -267,6 +267,44 @@ export function VideoGamePage({
                   </div>
                 </div>
               )}
+              {/* Related Links + Comments */}
+              {selectedGame.relatedLinks && selectedGame.relatedLinks.length > 0 && (
+                <div style={{ margin: "20px" }}>
+                  <h3 style={{ textAlign: "center" }}>-- Related Links --</h3>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                    {selectedGame.relatedLinks.map((link, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          border: "2px solid #ff00cf50",
+                          borderRadius: "12px",
+                          padding: "10px",
+                          backgroundColor: "#ff00cf10",
+                        }}
+                      >
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontWeight: "bold", color: "#ff00cf" }}
+                        >
+                          {link.title} ({link.type})
+                        </a>
+
+                        {link.comments && link.comments.length > 0 && (
+                          <div style={{ marginTop: "8px", paddingLeft: "10px", display: "flex", flexDirection: "column", gap: "5px" }}>
+                            {link.comments.map((comment, cidx) => (
+                              <span key={cidx} style={{ fontSize: "0.9em", opacity: 0.8 }}>
+                                - {comment}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </>
         )}
         </div>
