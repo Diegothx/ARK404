@@ -98,13 +98,49 @@
     {
         "id": 9,
         "title": "Justice -- Helltaker",
-        "description": "",
+        "description": "Justice Best girl",
         "file_url": "Videogames/Helltaker/Justice.jpg",
         "thumbnail_url": null,
         "drawing_date": "2020-07-15",
         "is_favorite": false,
         "collections": [
             2
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Idk, Woman Head(?",
+        "description": "Me gusta los colores de este, me gusta la onda del barquito del cuello, no se, lo siento calmante(? a pesar de que la mirada refleja un poco de cansancio, supongo que tengo muy vinculado el momento de calmarse == sentir el cansancio acumulado.",
+        "file_url": "GirlHead.png",
+        "thumbnail_url": null,
+        "drawing_date": "2021-07-31",
+        "is_favorite": false,
+        "collections": [
+            -1
+        ]
+    },
+    {
+        "id": 11,
+        "title": "",
+        "description": "Esta es mi pfp de mi mail personal, a veces me equivoco de mail al postular a trabajos so llegan postulaciones con esta imagen, no se si suma o baja puntos",
+        "file_url": "notFurryinsta.png",
+        "thumbnail_url": null,
+        "drawing_date": "2021-08-02",
+        "is_favorite": false,
+        "collections": [
+            -1
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Cold_IcedCoffe_diys",
+        "description": "El primer draw in your style que hice (https://www.instagram.com/p/CBTjcqMl584/), recuerdo que me la idea de ser evaluado por otro artista me dio mucha ansiedad en su tiempo, quizas deberia hacer  diys, es un buen ejercicio para dibujar sin pensar en cosas como diseño de personaje, ademas es una forma de interaccion entre artista, siento que es algo que me falto por mucho tiempo pero el miedo a ser evaluado en tu arte me paralizaba mucho de pequeño",
+        "file_url": "FanartOfOtherArtits/cold_icedcoffe_diys.png",
+        "thumbnail_url": null,
+        "drawing_date": "2020-07-30",
+        "is_favorite": false,
+        "collections": [
+            -1
         ]
     }
 ]

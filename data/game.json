@@ -161,7 +161,7 @@
         "title": "The Mortuary Assistant",
         "developer": "DarkStone Digital",
         "publisher": "DreadXP",
-        "link": "https://store.steampowered.com/app/1222140/The_Mortuary_Assistant/",
+        "link": "https://store.steampowered.com/app/1295920/The_Mortuary_Assistant/",
         "status": "backlog",
         "platform": [
             "PC"
@@ -267,7 +267,7 @@
         "title": "Soma",
         "developer": "Frictional Games",
         "publisher": "Frictional Games",
-        "link": "https://frictionalgames.com/soma/",
+        "link": "https://somagame.com/",
         "status": "backlog",
         "platform": [
             "PC"
@@ -556,7 +556,7 @@
         "developer": "Aggro Crab",
         "publisher": "Aggro Crab",
         "link": "https://store.steampowered.com/app/3527290/PEAK/",
-        "status": "casual",
+        "status": "playing",
         "platform": [
             "PC"
         ],
@@ -620,5 +620,27 @@
                 "created_at": "2026-03-26"
             }
         ]
+    },
+    {
+        "id": 23,
+        "title": "Transistor",
+        "developer": "Supergiant Games",
+        "publisher": "Supergiant Games",
+        "link": "https://www.supergiantgames.com/games/transistor/",
+        "status": "playing",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Action",
+            "RPG",
+            "Adventure"
+        ],
+        "release_year": 2014,
+        "priority": null,
+        "start_date": "2025-12-21",
+        "finish_date": null,
+        "collection_id": -1,
+        "notes": []
     }
 ]
