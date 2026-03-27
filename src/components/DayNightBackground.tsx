@@ -8,7 +8,7 @@ export default function DayNightBackground({backgroundUrl}: {backgroundUrl: stri
 
     let startProgress = hour / 24; 
 
-    const cycleDuration = 60_000 * 5;
+    const cycleDuration = 60_000 * 8;
     const startTime = performance.now();
 
     function animate(time: number) {
@@ -16,7 +16,7 @@ export default function DayNightBackground({backgroundUrl}: {backgroundUrl: stri
 
       const cycleProgress = (startProgress + (elapsed / cycleDuration)) % 1;
 
-      const newOpacity = 0.2 + 0.6 * ((Math.sin(cycleProgress * 2 * Math.PI) + 1) / 2);
+      const newOpacity = 0.1 + 0.7 * ((Math.sin((cycleProgress ) * Math.PI) ));
 
       setOpacity(newOpacity);
 
@@ -39,7 +39,7 @@ export default function DayNightBackground({backgroundUrl}: {backgroundUrl: stri
         backgroundSize: "cover",
         backgroundPosition: "center",
         filter: "blur(5px)",
-        opacity: opacity,
+        opacity:  opacity,
         transition: "opacity 0.1s linear",
       }}
     />
