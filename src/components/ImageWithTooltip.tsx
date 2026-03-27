@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function ImageWithTooltip({
-  width = "300px",
+  width = "255px",
   drawURL,
   rotation,
   altText,

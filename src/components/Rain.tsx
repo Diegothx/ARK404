@@ -90,6 +90,7 @@ export function Rain({
           height: "100%",
           opacity: frontLayerOpacity,
           overflow: "hidden",
+          pointerEvents: 'none',
         }}
       >
         {rainDrops.front}
@@ -102,6 +103,7 @@ export function Rain({
           height: "100%",
           bottom: backLayerBottom,
           opacity: backLayerOpacity,
+          pointerEvents: 'none',
         }}
       >
         {rainDrops.back}

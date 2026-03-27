@@ -1,5 +1,12 @@
 [
     {
+        "id": -1,
+        "name": "Sin Coleccion",
+        "description": "",
+        "type": "misc",
+        "drawings": []
+    },
+    {
         "id": 1,
         "name": "Omori",
         "description": "",

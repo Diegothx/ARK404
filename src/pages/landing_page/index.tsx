@@ -52,36 +52,35 @@ export function LandingPage({
       <div
         style={{
           position: "relative",
-          width: "1500px",
-          borderRadius: "20px",
-          minHeight:'550px',
-          height: "90%",  
+          width: "1152px",
+          borderRadius: "20px", 
+          height: "768px",  
           border: "5px double purple",
           margin: "auto",
           zIndex: "1",
           color: "#ff01ff",
           alignContent: "center",
           textAlign: "center",
-          backgroundColor: "rgba(53, 6, 59, 0.45)",
+          backgroundColor: "rgba(53, 6, 59, 0.5)",
           display:'flex',
           flexDirection:'column', 
         }}
       >
         <div
           style={{
-            backgroundColor: "#ff00cf30",
+            backgroundColor: "#d400ff46",
             borderTopLeftRadius: "15px",
             borderBottomRightRadius: "15px",
-            width:'40%',
+            width:'45%',
             paddingRight: "15px",
             paddingLeft: "20px",
             textAlign: "left",
-            height:'250px',
+            height:'175px',
           }}
         >
-          <h2>ROBCO INDUSTRIES (TM) UNIFIED OPERATING SYSTEM</h2>
-          <h2>The world you grew up to join no longer exists</h2>
-          <h2> <span style={{color:"limegreen" }}>•</span> {quote}...</h2>
+          <h3>ROBCO INDUSTRIES (TM) UNIFIED OPERATING SYSTEM</h3>
+          <h3>The world you grew up to join no longer exists</h3>
+          <h3> <span style={{color:"limegreen" }}>•</span> {quote}...</h3>
         </div>  
         <div
           style={{
@@ -151,8 +150,8 @@ export function LandingPage({
             <div className={`fade-in scale-in`} key="icons">
               <div
                 style={{
-                  padding: "50px",
-                  width: "20%",
+                  padding: "30px 50px",
+                  width: "25%",
                   height: "50%",
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr 1fr",
@@ -161,7 +160,7 @@ export function LandingPage({
                 <svg
                   style={{ cursor: "pointer" }} 
                   onClick={() => setCurrentTab(Tabs.DRAWING)} fill="#ff00cfa0" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                  width="80px" height="80px" viewBox="0 0 334.8 334.8"  
+                  width="73px" height="73px" viewBox="0 0 334.8 334.8"  
                   >
                 <g>
                   <g>
@@ -183,7 +182,7 @@ export function LandingPage({
                 </svg>
                 <svg 
                   style={{ cursor: "pointer" }}
-                  height="80px" width="80px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"  
+                  height="73px" width="73px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"  
                   viewBox="0 0 512 512" 
                   onClick={() => setCurrentTab(Tabs.VIDEOGAME)} > 
                   <g>
@@ -212,7 +211,7 @@ export function LandingPage({
                 </svg>
                  <svg  style={{ cursor: "pointer" }} 
                   onClick={() => setCurrentTab(Tabs.WEBGAMES)} 
-                 width="80px" height="80px"
+                 width="73px" height="73px"
             viewBox="0 0 16 8"
             version="1.1"
             id="svg201"
@@ -290,7 +289,7 @@ export function LandingPage({
                   marginLeft: 'auto',
                   marginRight: 'auto',
                   overflow:'hidden',
-                  fontSize: "150px",
+                  fontSize: "140px",
                   fontFamily: "Alvera Bold Square",
                   cursor: "pointer",
                   flexGrow:1, 
@@ -301,7 +300,7 @@ export function LandingPage({
                 <span className="blinking-underscore" style={{width:'69px'}}>{" "}</span>ENTER<span className="blinking-underscore" style={{width:'69px'}}>_</span>
               </h1> 
           )}  
-        <h1
+        <h2
           style={{
             position: "absolute",
             bottom: "0",
@@ -310,15 +309,15 @@ export function LandingPage({
           }}
         >
           There'll be another time...
-        </h1>
+        </h2>
       </div>
       <img
         src="./walker.png"
         style={{
           position: "absolute",
           bottom: 0,
-          width: "20%",
-          right: 0,
+          width: "15%",
+          right: '12%',
           zIndex: 1,
           filter: "drop-shadow(20px 20px 10px rgba(23, 0, 228, 0.31)) ",
         }}

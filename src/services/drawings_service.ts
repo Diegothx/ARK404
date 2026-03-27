@@ -1,4 +1,4 @@
-import { Drawing } from "../types/drawing";
+import { Collection, Drawing } from "../types/drawing";
 
 export default class DrawingsService {
   static async getDrawingsPerYear(): Promise<{ [year: number]: Drawing[] }> {
@@ -38,5 +38,22 @@ export default class DrawingsService {
     const drawings: Drawing[] = await drawDB.json();
     const filteredDrawings = drawings.filter(d => collection.drawings.includes(d.id)); 
     return filteredDrawings;
+  }
+
+  static async getCollectionMetaData(collectionId: number): Promise<Collection | null> {
+    const collectionDB = await fetch('/ARK404/data/collection.json');
+    const collections: Collection[] = await collectionDB.json();
+    const collection = collections.find(c => c.id === collectionId);
+    if (!collection) {
+      console.error(`Collection with id ${collectionId} not found.`);
+      return null;
+    }
+    return collection;
+  }
+
+  static async getCollections(): Promise<Collection[]> {
+    const collectionDB = await fetch('/ARK404/data/collection.json');
+    const collections: Collection[] = await collectionDB.json();
+    return collections;
   }
 }

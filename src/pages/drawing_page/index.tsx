@@ -3,10 +3,22 @@ import { Rain } from "../../components/Rain";
 import { Tabs } from "../../TabContainer";
 import { ImageWithTooltip } from "../../components/ImageWithTooltip";
 import DrawingsService from "../../services/drawings_service";
-import {Drawing} from "../../types/drawing"; 
+import {Collection, Drawing} from "../../types/drawing"; 
 import { getDrawingURL } from "../../utils/imageURL";
 import drawZoomedImage from "../../components/drawZoomedImage";
+function groupByCollectionsMap(drawings: Drawing[]) {
+  const grouped = new Map<number, Drawing[]>()
 
+  drawings.forEach((drawing) => {
+    drawing.collections.forEach((collectionId) => {
+      if (!grouped.has(collectionId)) {
+        grouped.set(collectionId, [])
+      }
+      grouped.get(collectionId)!.push(drawing)
+    })
+  });
+  return grouped
+}
 export function DrawingPage({
   setCurrentTab,
 }: {
@@ -16,8 +28,8 @@ export function DrawingPage({
   const [drawingYears, setDrawingYears] = useState<number[]>([]);
   const [drawingIndex, setDrawingIndex] = useState<number | null>(null);
   const [rotations, setRotations] = useState<{ [id: number]: number }>({});
- 
-
+  const [activeTab, setActiveTab] = useState<'digitalDrawings' | 'sketches' | 'collection'>('digitalDrawings');
+const [collections, setCollections] = useState<Collection[]>([]);
   useEffect(() => { 
     DrawingsService.getDrawingsPerYear()
       .then((response) => {
@@ -50,6 +62,10 @@ export function DrawingPage({
       setDrawingsPerYear({});
       setDrawingYears([]);
     });
+
+  DrawingsService.getCollections()
+    .then(setCollections)
+    .catch(() => setCollections([]));
 }, []);
   const allDrawings = drawingYears.flatMap(year => drawingsPerYear[year] || []);
   const goNext = () => {
@@ -79,6 +95,8 @@ export function DrawingPage({
   window.addEventListener("keydown", handleKeyDown);
   return () => window.removeEventListener("keydown", handleKeyDown);
 }, [drawingIndex, allDrawings.length]);
+
+  const drawingPerCollection = groupByCollectionsMap(allDrawings);
   return (
     <>
       <Rain dropCount={100} frontLayerOpacity={1} backLayerOpacity={0.5} />
@@ -91,7 +109,7 @@ export function DrawingPage({
         onClick={() => setCurrentTab(Tabs.LANDING)}
         style={{
           margin: "0px 50px",
-          position: "relative",
+          position: "absolute",
           cursor: "pointer",
           color: "white",
         }}
@@ -100,21 +118,57 @@ export function DrawingPage({
       </h1>
 
       <div
-        style={{
-          margin: "0px 20px",
+        style={{ 
+          width:'1152px',
+          margin: "50px auto", 
+          display: "flex", 
+          flexDirection: "column",
           padding: "30px 0", 
           gap: "20px",
-          zIndex: 2,
-          height: "90%",
-          overflowY: "auto",
+          zIndex: 2, 
+          backgroundColor: "#faeef81e", 
+          border: "3px double #faeef8",
         }}
       >
-        {drawingYears.map((year) => (
+      {/*<tabs>*/}
+      <div style={{display: "flex", justifyContent: "center", gap: "20px"}}>
+        <button
+
+          onClick={() => setActiveTab('digitalDrawings')}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: activeTab === 'digitalDrawings' ? "purple" : "transparent",
+            border: activeTab === 'digitalDrawings' ?  "none" :  "2px solid #faeef8",
+            borderRadius: "5px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Digital Drawings
+        </button> 
+        <button
+          onClick={() => setActiveTab('collection')}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: activeTab === 'collection' ? "purple" : "transparent",
+            border: activeTab === 'collection' ?  "none" :  "2px solid #faeef8",
+            borderRadius: "5px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Collection
+        </button>
+      </div>
+
+      {/*<tab content>*/}
+      {activeTab === 'digitalDrawings' &&
+        drawingYears.map((year) => (
           <div key={year}>
             <h1 
               style={{display:'flex', justifyContent:"center"}}
             >{year}</h1>
-            <div style={{justifyContent:'center',marginBottom:'10px', display:'flex'}}>-----------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+            <div style={{justifyContent:'center',marginBottom:'10px', display:'flex'}}>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
             <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "20px" }}>
             {drawingsPerYear[year] && drawingsPerYear[year]
             .map((drawing) => {
@@ -133,6 +187,38 @@ export function DrawingPage({
           </div>
           </div>
         ))}
+
+        {activeTab === 'collection' &&
+          <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "20px" }}>
+            {Array.from(drawingPerCollection.entries())
+  .sort(([a], [b]) => {
+    if (a === -1) return 1;   // push -1 down
+    if (b === -1) return -1;  // keep others above
+    return a - b;             // normal ordering (or use name sort)
+  }).map(([collectionId, drawings]) => (
+              <div key={collectionId} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <h2>{collections.find(c => c.id === collectionId)?.name || `Collection ${collectionId}`} - {collections.find(c => c.id === collectionId)?.type}</h2>
+                
+            <div style={{justifyContent:'center',marginBottom:'10px', display:'flex'}}>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+            <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "20px" }}>
+                  {drawings.map((drawing) => {
+                    const rotation = rotations[drawing.id] ?? 0;
+                    return (
+                      <ImageWithTooltip
+                        key={drawing.id}
+                        drawURL={getDrawingURL(drawing.file_url)}
+                        altText={drawing.title || `Drawing ${drawing.id}`}
+                        rotation={rotation}
+                        onClick={() => setDrawingIndex(allDrawings.indexOf(drawing))}
+                        idx={drawing.id}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        }
       </div>
     </>
   );

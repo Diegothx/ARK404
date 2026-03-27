@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { GuestbookService, GuestbookEntry} from '../services/guestbook_service';
 
-const MAX_NAME_LENGTH = 50;
-const MAX_MESSAGE_LENGTH = 300;
-const MAX_EMAIL_LENGTH = 100;
+const MAX_NAME_LENGTH = 20;
+const MAX_MESSAGE_LENGTH = 150;
+const MAX_EMAIL_LENGTH = 50;
 
 const Guestbook = ({
   colors = {
@@ -41,7 +41,7 @@ const Guestbook = ({
     if (email.trim() !== '' && !validateEmail(email.trim())) {
       setError('Please enter a valid email or leave it blank.');
       return;
-    } 
+    }   
 
     const newEntry = await GuestbookService.createEntryGuestbookPost({
       name: name.trim(),
@@ -59,8 +59,8 @@ const Guestbook = ({
   }, []);
 
   const boxStyle = {
-    width: '180px',
-    height:'365px',
+    width: '150px',
+    height:'300px',
     padding: '7px',
     borderRadius: '4px',
     border: `5px double ${colors.mainColor}`,
@@ -99,7 +99,7 @@ const Guestbook = ({
   return (
     <div style={{ margin: '0', display: 'flex', flexDirection: 'row', gap: '5px' }}>
       <div style={boxStyle}>
-        <h2 style={{margin: '10px'}}>Guestbook</h2>
+        <h3 style={{margin: '2px'}}>Guestbook</h3>
 
         <form onSubmit={handleSubmit} style={{ marginBottom: '1rem', width: '100%' }}>
           <div style={{ marginBottom: '7px', display: 'flex', flexDirection: 'column' }}>
@@ -117,7 +117,7 @@ const Guestbook = ({
             </small>
           </div>
 
-          <div style={{ marginBottom: '7px', display: 'flex', flexDirection: 'column'  }}>
+          <div style={{ marginBottom: '2px', display: 'flex', flexDirection: 'column'  }}>
             <input
               type="email"
               placeholder="Your email (optional)"
@@ -131,13 +131,13 @@ const Guestbook = ({
             </small>
           </div>
 
-          <div style={{ marginBottom: '7px', display: 'flex', flexDirection: 'column'  }}>
+          <div style={{ marginBottom: '2px', display: 'flex', flexDirection: 'column'  }}>
             <textarea
               placeholder="Your message"
               value={message}
               maxLength={MAX_MESSAGE_LENGTH}
               onChange={(e) => setMessage(e.target.value)}
-              style={{ ...inputStyle, minHeight: '100px', }}
+              style={{ ...inputStyle, minHeight: '90px', }}
               required
             />
             <small>
@@ -154,7 +154,7 @@ const Guestbook = ({
       </div>
 
       <div style={{...boxStyle , overflowY: 'hidden' }}>
-        <h2 style={{margin: '10px'}}>Entries</h2>
+        <h3 style={{margin: '2px'}}>Entries</h3>
         {entries.length === 0 ? (
           <p>No entries yet.</p>
         ) : (

@@ -135,12 +135,13 @@ export function VideoGamePage({
       </div>
       <div
         style={{
-          margin: "0px 50px",
+          margin: "0px auto", 
           height: "90%",
           display: "flex",
           justifyContent: "space-evenly",
           flexDirection: "row",
-          position: "relative", 
+          position: "relative",
+          width:'1152px', 
         }}
       > 
         <div style={{ overflowY: "auto", width: "40%", zIndex: "1", 
@@ -153,8 +154,8 @@ export function VideoGamePage({
 
               return (
                 <div key={status}>
-                  <h2 style={{ color: colorByStatus(status) }}>
-                    ----- {statusTitles[status]} -----
+                  <h2 style={{ color: colorByStatus(status), textAlign: "center" }}>
+                    ------------ {statusTitles[status]} ------------
                   </h2>
 
                   {games.map((g) => (
@@ -175,7 +176,7 @@ export function VideoGamePage({
         </div>
         <div
           style={{
-            width: "40%",
+            width: "60%",
             borderRadius: "20px",
             border: "5px double purple",
             zIndex: "1",
@@ -245,9 +246,10 @@ export function VideoGamePage({
                   <div
                     style={{
                       display: "grid",
+                      justifyContent: "center",
                       gridTemplateColumns:
-                        "repeat(auto-fit, minmax(200px, 1fr))",
-                      gap: "20px",
+                        "repeat(auto-fit, 153px)",
+                      gap: "10px",
                     }}
                   >
                     {currentGameDrawings.map((draw, idx) => {
