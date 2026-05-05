@@ -30,5 +30,49 @@
             8,
             9
         ]
+    },
+    {
+        "id": 3,
+        "name": "Monster Hunter",
+        "description": "",
+        "type": "videogame",
+        "drawings": []
+    },
+    {
+        "id": 4,
+        "name": "Anatomy",
+        "description": "",
+        "type": "Studies",
+        "drawings": []
+    },
+    {
+        "id": 5,
+        "name": "AmongUs",
+        "description": "",
+        "type": "videogame",
+        "drawings": []
+    },
+    {
+        "id": 6,
+        "name": "The Legend of Zelda",
+        "description": "",
+        "type": "videogame",
+        "drawings": []
+    },
+    {
+        "id": 7,
+        "name": "Little Nightmares",
+        "description": "",
+        "type": "videogame",
+        "drawings": []
+    },
+    {
+        "id": 8,
+        "name": "DIYS",
+        "description": "Draw it yourself, ilustraciones de otra gente dibujado en mi estilo",
+        "type": "misc",
+        "drawings": [
+            12
+        ]
     }
 ]
