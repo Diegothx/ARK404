@@ -57,7 +57,7 @@ export function WebGamesPage({
               overflow: "hidden",
               color:"black"
             }}>
-              <img src={game.thumbnail || "public/images/webDisplay/webgames.svg"}  alt={game.name} style={{ width: 100, height: 100}} />
+              <img src={game.thumbnail || "/images/webDisplay/webgames.svg"}  alt={game.name} style={{ width: 100, height: 100}} />
               <span>{game.name}</span>
             </button>
           ))}

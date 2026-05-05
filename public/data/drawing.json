@@ -5,7 +5,7 @@
         "description": "Aubrey modo hater, la cancion de 'It means everything' con el combate en la iglesia logra emetir la emocionalidad bastante fuerte.",
         "file_url": "Videogames/Omori/Aubrey.png",
         "thumbnail_url": null,
-        "drawing_date": null,
+        "drawing_date": "2021-05-29",
         "is_favorite": false,
         "collections": [
             1
@@ -121,7 +121,7 @@
     },
     {
         "id": 11,
-        "title": "",
+        "title": "not Furro",
         "description": "Esta es mi pfp de mi mail personal, a veces me equivoco de mail al postular a trabajos so llegan postulaciones con esta imagen, no se si suma o baja puntos",
         "file_url": "notFurryinsta.png",
         "thumbnail_url": null,
@@ -140,7 +140,55 @@
         "drawing_date": "2020-07-30",
         "is_favorite": false,
         "collections": [
-            -1
+            8
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Guys, Red Kinda sus",
+        "description": "Oh yes, pandemia times, unica fuente social en algunos momentos eran lobby con gente de la u que ni conocia jugando among us, recuerdo estar en la feca tirado en el suelo jugando desde el celular",
+        "file_url": "Videogames/AmongUs.png",
+        "thumbnail_url": null,
+        "drawing_date": "2020-11-03",
+        "is_favorite": false,
+        "collections": [
+            5
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Link Jojo Pose",
+        "description": "Completamente necesario, nada mas que agregar",
+        "file_url": "Videogames/LinkJojoPose.jpg",
+        "thumbnail_url": null,
+        "drawing_date": "2020-06-28",
+        "is_favorite": false,
+        "collections": [
+            6
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Little Nightmares",
+        "description": "No six... donde te sentaste D:",
+        "file_url": "Videogames/LittleNightmares.png",
+        "thumbnail_url": null,
+        "drawing_date": "2021-07-04",
+        "is_favorite": false,
+        "collections": [
+            7
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Monster Hunter Jaggi Armor",
+        "description": "Algun dia podria darle su estudio profundo del diseño de las armaduras de este juego, me gusta miuhco artistas que  crean diseños basados en otras franquisias como pokemon. Ademas, albado sea grann  jaggi",
+        "file_url": "Videogames/MHJaggiArmor.jpg",
+        "thumbnail_url": null,
+        "drawing_date": "2020-07-04",
+        "is_favorite": false,
+        "collections": [
+            3
         ]
     }
 ]

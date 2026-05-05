@@ -4,6 +4,7 @@ import QuotesService from  "../../services/quote_service"
 import { Rain } from "../../components/Rain"; 
 import DayNightBackground from "../../components/DayNightBackground";
 
+import Updates from "../../components/Updates"
 import Guestbook from "../../components/GuestBook";
 export function LandingPage({ 
   setCurrentTab, 
@@ -56,7 +57,7 @@ export function LandingPage({
           borderRadius: "20px", 
           height: "768px",  
           border: "5px double purple",
-          margin: "auto",
+          margin: "auto auto",
           zIndex: "1",
           color: "#ff01ff",
           alignContent: "center",
@@ -310,6 +311,84 @@ export function LandingPage({
         >
           There'll be another time...
         </h2>
+
+        {showIcons && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: "0px",
+              paddingRight: "25px",
+              paddingBottom: "25px",
+              right: "0px",
+            }}
+          >
+            <Updates/>
+          </div> 
+        )}
+        
+      </div> 
+      {/* Recomend sites */}
+      <div style={{
+        marginLeft: "auto",
+        marginRight: "auto", 
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1,
+        position: "relative", 
+        overflow: "hidden",
+        gap: "5px",
+        marginTop:'1px',
+        backgroundColor: "rgba(255, 0, 207, 0.1)",
+        width: "1130px",
+        borderRadius: "0 0 0 10px",
+      }}>
+        <p style={{margin:'0', fontSize:'12px', display:'flex', justifyContent:'center'}}>-- Cool sites --</p>
+        <div style={{
+          margin: '0',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        }}>
+        <a href="https://typhnol.github.io/" target="_blank">
+        <img src="https://file.garden/Zlk30agh4hF11eOU/typhnolbutton.gif" className="button" alt="typhnol's button"/>
+        </a>
+        <a href="https://genos303.nekoweb.org" target="_blank">
+          <img src="https://genos303.nekoweb.org/button.png"/>
+        </a>
+        <a  href="https://stupied.net/" target="_blank">
+          <img src="https://stupied.net/meta/button.png" alt="" style={{border: '2px solid var(--dk-blue)' }}/>
+        </a>
+        <a href="https://olliveen.neocities.org/" target="_blank">
+          <img src="https://olliveen.neocities.org/img/button.gif" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+
+        <a target="_blank" href="https://troy-sucks.neocities.org/">
+          <img src="https://troy-sucks.neocities.org/images/traysucksbutton.gif" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+
+        <a href="https://ransei.neocities.org/" target="_blank">
+          <img src="https://ransei.neocities.org/assets/img/embeded.gif" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+
+        <a href="https://nomnomnami.com/" target="_blank">
+          <img src="https://nomnomnami.com/images/site_button.gif" alt="nomnomnami" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+
+        <a href="https://jamesland.org/" target="_blank">
+          <img src="https://jamesland.org/Images/Badges/James_Badge.gif" alt="James Pangartica" style={{ maxHeight: "30px", width: "auto" }} />
+        </a> 
+
+        <a href="https://ruralrose.neocities.org/" target="_blank">
+          <img src="https://ruralrose.neocities.org/ibutton1.gif" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+        <a href="https://angelnetcast.com/" target="_blank">
+          <img src="https://angelnetcast.com/assets/images/buttons/sites/angelnetcast.gif" alt="angelnetcast site button" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+        <a href="https://ellesho.me/" target="_blank">
+          <img src="https://ellesho.me/elles8831.webp" alt="elle's 88x31 button" style={{ maxHeight: "30px", width: "auto" }} />
+        </a>
+          
+        </div>
       </div>
       <img
         src="./walker.png"

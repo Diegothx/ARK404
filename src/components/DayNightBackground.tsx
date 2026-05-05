@@ -41,6 +41,7 @@ export default function DayNightBackground({backgroundUrl}: {backgroundUrl: stri
         filter: "blur(5px)",
         opacity:  opacity,
         transition: "opacity 0.1s linear",
+        zIndex: 0,
       }}
     />
   );
