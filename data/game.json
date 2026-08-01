@@ -642,5 +642,31 @@
         "finish_date": null,
         "collection_id": -1,
         "notes": []
+    },
+    ,
+    {
+        "id": 24,
+        "title": "Almost Home Now",
+        "developer": "Timeberwell",
+        "publisher": "Timeberwell",
+        "link": "https://timeberwell.itch.io/almost-home-now",
+        "status": "finished_100",
+        "platform": [
+            "PC"
+        ],
+        "genre": [
+            "Horror",
+            "Adventure"
+        ],
+        "release_year": 2014,
+        "priority": null,
+        "start_date": "2026-07-31",
+        "finish_date":  "2026-07-31",
+        "collection_id": -1,
+        "notes": [
+            {
+                "content": "Buena prueba de concepto. Me gusta el estilo de PSX y amo cuando los juegos con cámara fija ponen cámaras que claramente son desde los ojos de algo que te acecha. Quizás se pueda hacer algo más con la cámara, como colocarla justo donde ves algo ocultarse detrás de ti. Al final arma bien su remate. Antes de eso se hace un poco raro ver a la cabra preocuparse, pero seguir caminando lento sin apurarse. Quizás sería bueno verla visiblemente más asustadiza, progresivamente yendo más rápido y mirando a los alrededores, no solo al final. Buen -bajar a buscar un vaso de agua a las 5 a.m.- simulator.",
+                "created_at": ""2026-07-31"
+            }]
     }
 ]
